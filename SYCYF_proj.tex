@@ -1,0 +1,215 @@
+%styl klasy z Polskimi Normami oprac. Marcin Wolinski
+\documentclass[a4paper,titleauthor]{mwart} 
+
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} %pakiet do wstawiania grafiki
+\usepackage[hyphens]{url} %pakiet do wstawiania linkow
+%\usepackage[hidelinks,breaklinks]{hyperref}
+\usepackage{authblk}%pakiet do tworzenia afiliacji
+\usepackage{tabularx}%pakiet do tabel
+\usepackage[a4paper, left=2cm, right=2cm, top=3cm, bottom=3cm]{geometry}
+\usepackage{listings}
+\usepackage{placeins}%pakiet do kontroli umieszczania obiektow
+\usepackage{hyperref}%pakiet do m.in. kolorowania linkow
+
+\usepackage[tablegrid,owncaptions]{vhistory}
+\renewcommand{\vhhistoryname}{Historia zmian}
+\renewcommand{\vhversionname}{Wersja}
+\renewcommand{\vhdatename}   {Data}
+\renewcommand{\vhauthorname} {Autor}
+\renewcommand{\vhchangename} {Opis zmian}
+
+\renewcommand\figurename{Rys.}%skrocony podpis
+\renewcommand\lstlistingname{Wydruk}
+
+
+%------------------------------------------------------------------------
+% Dane do strony tytułowej
+
+\title{{\Huge  Projekt SYCYF}\\ - \\{\Large Zespół nr 1}\\ }
+
+\author{Jan Warszawski \and Piotr Krakowski \and Natalia Gdańska}
+
+\affil{Politechnika Warszawska, Instytut Telekomunikacji}
+\date{\today}
+
+%------------------------------------------------------------------------
+% Początek dokumentu
+\begin{document}
+	
+%Automatycznie generowany tytuł dokumentu
+\maketitle
+%podpis na dole strony, bez numeru
+\let\thefootnote\relax\footnotetext{Opracowanie w ramach programu NERW, 2020. Paweł Tomaszewicz, Zakład Cyberbezpieczeństwa, IT, PW.}
+
+%------------------------------------------------------------------------
+% Historia zmian
+\begin{versionhistory}
+	\vhEntry{1.0}{22.01.2020}{JW|PK|NG}{Pierwsza wersja raportu Etapu 1}
+	\vhEntry{1.1}{22.01.2020}{JW}{Dodano rozdział \ref{sec:wstep} }
+	\vhEntry{1.2}{22.01.2020}{NG}{Dodano rozdział \ref{sec:design_thinking} }
+	\vhEntry{1.3}{22.01.2020}{PK}{Rozszerzono opis rozdziału \ref{sec:design_thinking} o ...}
+	\vhEntry{1.3}{23.01.2020}{PK}{Opis zmian powinien zwięźle omówić co zostało zrobione, ale nie ma być zdawkowy}
+	\vhEntry{2.0}{30.02.2020}{JW|PK|NG}{Pierwsza wersja raportu Etapu 2}
+	\vhEntry{2.1}{30.02.2020}{JW|PK|NG}{Numeracja wersji \textit{x.y}, gdzie \textit{x} - numer etapu, \textit{y} - wersja w ramach etapu}
+\end{versionhistory}
+
+%------------------------------------------------------------------------
+% Automatycznie generowany spis treści
+\tableofcontents
+
+%------------------------------------------------------------------------
+\section{Wstęp}
+\label{sec:wstep}%etykieta
+
+Raport ma dokumentować \textbf{przyrostowo} realizację projektu. Poszczególne etapy realizacji projektu obejmują: 
+
+\renewcommand{\labelenumi}{\Roman{enumi}}
+\begin{enumerate}\setlength{\itemsep}{0.2\baselineskip} 
+	\item Etap wstępny – stworzenie zespołu i organizacja warsztatu pracy, 
+	\item Etap zdobywania informacji – analiza literatury, istniejących metod, zebranie wiedzy teoretycznej związanej z tematem projektu, 
+	\item Etap opracowania koncepcji – szukanie rozwiązań, najlepiej sprawdzi się proces burzy mózgów (mapy myśli), opracowanie koncepcji rozwiązania  na podstawie zdobytej wiedzy, opracowanie prostego modelu referencyjnego (Python, MATLAB/GNU Octave, itp) i danych do testowania  
+	\item Etap implementacji – na tym etapie rozwijamy i rozbudowujemy koncepcje projektowe docelowego systemu, modelujemy elementy systemu w HDL, weryfikujemy funkcjonalnie, integrujemy i oceniamy prototypy, 
+	\item Etap uruchomienia – wdrożenie projektu, uruchomienie na docelowej platformie, przetestowanie według wcześniej opracowanych scenariuszy testowych. 
+\end{enumerate}
+
+Prace wykonane w ramach każdego etapu powinny być opisane w oddzielnych rozdziałach raportu. W tym dokumencie pokazano przykładową strukturę raportu. 
+
+W opisach należy wykorzystywać rysunki, wykresy i tabele dla ułatwienia zrozumienia koncepcji Autorów. Na przykładzie rysunku  \ref{fig:double_diamond}  można zobaczyć, jak załączać rysunki i się do nich odwoływać w tekście. Podobnie tabela \ref{tab:tabela_prawdy} demonstruje użycie tabel, a wydruk \ref{lst:wydruk} jak wykorzystywać listingi kodu. 
+
+Postępy prac należy odpowiednio opisać w historii zmian tak, aby opiekun projektu mógł śledzić wkład poszczególnych członków zespołu w realizację projektu.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{DoubleDiamond}
+	\caption{\label{fig:double_diamond}Double Diamond}
+\end{figure}
+
+\begin{table}[ht]
+	\begin{center}
+		\caption{Przykładowa tablica}
+		\label{tab:tabela_prawdy}
+		\begin{tabular}{|r||c|c||c|}
+			\hline 
+			PS & data=0 & data=1 & ready \\
+			\hline \hline
+			s0 & s1 & s0 & 0 \\
+			s1 & s2 & s0 & 0 \\
+			s2 & s2 & s3 & 0\\
+			s3 & s1 & s4 & 0 \\ 
+			s4 & s1 & s0 & 1 \\ 
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{lstlisting}[label=lst:wydruk,caption={Przykładowy wydruk},language=Verilog,numbers=left]
+module pattern_detec // 1100 
+(	
+input clk, reset,
+input data,
+output ready
+);
+
+reg [2:0] aut_reg,aut_next;
+
+localparam s0=0, s1=1, s2=2, s3=3, s4=4;
+
+always@(posedge clk, posedge reset)
+if(reset)
+aut_reg <= s0;
+else
+aut_reg <= aut_next;
+
+always@*
+case(aut_reg)
+s0: if(data) aut_next = s0; else aut_next = s1; //0
+s1: if(data) aut_next = s0; else aut_next = s2; //0
+s2: if(data) aut_next = s3; else aut_next = s2; //1
+s3: if(data) aut_next = s4; else aut_next = s1; //1
+s4: if(data) aut_next = s0; else aut_next = s1;
+default: aut_next = s0; 
+endcase
+
+assign ready = aut_reg == s4 ? 1'b1 : 1'b0;	
+
+endmodule
+\end{lstlisting}
+
+	
+%------------------------------------------------------------------------
+\section{Organizacja prac}
+\label{sec:organizacja}
+
+Rozdział ten powinien opisywać zadania zrealizowane w ramach Etapu\texttt{I}. Można omówić:
+
+\begin{itemize}
+	\item podejście Design Thinking (w wersji Double Diamond lub innej),
+	\item wybór sposobu zarządzania projektem
+	\item organizacja warsztatu pracy, dobór narzędzi (Overleaf, Microsoft Teams, GutHub, itp.)
+\end{itemize}
+
+\subsection{Design Thinking}
+\label{sec:design_thinking}
+
+\subsection{Zarządzanie projektem}
+\label{sec:zarządzanie_projektem}
+
+\subsubsection{Metody}
+\label{sec:narzędzia}
+
+\subsubsection{Narzędzia}
+\label{sec:narzędzia}
+
+%------------------------------------------------------------------------
+\section{Informacje podstawowe}
+\label{sec:informacje_podstawowe}
+
+Rozdział ten (i podrozdziały) powinien opisywać zadania zrealizowane w ramach Etapu\texttt{II}. W podrozdziałach należy przedstawić omówienie zagadnień niezbędnych (albo przydatne) do realizacji projektu, np.:
+
+\begin{itemize}
+	\item informacje znalezione w publikacjach, na stronach internetowych, itp.,
+	\item istniejące rozwiązania,
+	\item informacje teoretyczne niezbędne do realizacji projektu (ilustrowane równaniami, tabelami, przykładami, itp.),
+	\item narzędzia, które zostaną użyte do realizacji projektu (Quartus, Vivado, Modelsim, Matlab, Octave, itp.).
+\end{itemize}
+
+Ten rozdział powinien być bogaty w odnośniki do bibliografii. Nie ma potrzeby wnikać w szczegóły, jeśli można się odwołać do materiałów, które je zawierają. Np. omawiając LaTeX po szczegóły można odesłać do \cite{WikiLatex}.
+
+%------------------------------------------------------------------------
+\section{Koncepcja}
+\label{sec:koncepcja}
+
+W tym rozdziale (i podrozdziałach) należy opisać zadania zrealizowane w ramach Etapu\texttt{III}. Może on zawierać mapę myśli ilustrującą burzę mózgów, która doprowadziła do opracowania koncepcji. Konieczne są natomiast:
+
+\begin{itemize}
+	\item schemat blokowy koncepcji rozwiązania i jego omówienie,
+	\item przykład ilustrujący działanie,
+	\item model referencyjny w Python, MATLAB/GNU Octave, itp),
+	\item danych do testowania i opis scenariuszy testowych.
+\end{itemize}
+
+
+
+%------------------------------------------------------------------------
+\section{Implementacja}
+\label{sec:implementacja}
+
+W tym rozdziale (i podrozdziałach) należy opisać sposób realizacji sytemu (Etap\texttt{IV}). Omówienie realizacji poszczególnych modułów (wydruki, wykresy symulacji, ocena szybkości działania i wymaganych zasobów). Rozdział powinien zawierać ocenę opracowanego rozwiązania (ocena szybkości działania i wymaganych zasobów). Należy zawrzeć opis weryfikacji funkcjonalnej przy użyciu testbench'a opracowanego z użyciem danych do testowania i scenariuszy testowych przedstawionych w rozdziale \ref*{sec:koncepcja}.
+
+\section{Uruchomienie}
+\label{sec:uruchomienie}
+
+W tym rozdziale (i podrozdziałach) należy opisać uruchomienie systemu na docelowej platformie (Etap\texttt{V}). 
+	
+\section{Podsumowanie}
+\label{sec:podsumowanie}
+
+W tym rozdziale (i podrozdziałach) należy dokonać krytycznej oceny zaproponowanego rozwiązania i możliwości jego rozwoju. 
+
+
+\bibliographystyle{plabbrv} % plplain plabbrv plalpha
+\bibliography{SYCYF_proj}
+	
+\end{document}
