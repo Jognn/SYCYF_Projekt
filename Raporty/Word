@@ -1,0 +1,28 @@
+Word:
+
+\indent
+
+Zalety:
+\begin{itemize}
+
+\item[-]
+Program nie wymaga poznania specjalistycznej składni ani komend;
+\item[-]
+W łatwy sposób można zmienić parametry np. czcionki, marginesów;
+\item[-]
+Nie wymaga importowania odpowiednich bibliotek.
+\end{itemize}
+
+\indent
+
+Wady:
+\begin{itemize}
+
+\item[-]
+Wprowadzenie zapisów (symboli) matematycznych jest bardzo trudne;
+\item[-]
+ Występują problemy z formatowaniem (np. odpowiednie marginesy, akapity);
+\item[-]
+Podczas przesyłania pliku zdarza się jego deformacja.
+\end{itemize}
+
