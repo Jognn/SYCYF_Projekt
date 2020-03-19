@@ -4,6 +4,8 @@ Zalety:
 
 - Składnia LaTeX-a jest używana jako wzorowa m. in. do narzędzi Libre, Open Office oraz na różnego rodzaju forach matematycznych i fizycznych;
 
+- Możliwość zapisu znaków specjalnych (w tym znaków używanych w matematyce) przy pomocy odpowiednich komend;
+
 - Wszystkie tytuły sekcji / podpisy tabel, grafik, wykresów są jednakowo formatowane;
 
 - LaTeX automatycznie numeruje sekcje, rysunki, tabele, cytowania, przypisy itp.;
