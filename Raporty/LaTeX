@@ -1,0 +1,33 @@
+LaTeX:
+
+Zalety:
+
+- Składnia LaTeX-a jest używana jako wzorowa m. in. do narzędzi Libre, Open Office oraz na różnego rodzaju forach matematycznych i fizycznych;
+
+- Wszystkie tytuły sekcji / podpisy tabel, grafik, wykresów są jednakowo formatowane;
+
+- LaTeX automatycznie numeruje sekcje, rysunki, tabele, cytowania, przypisy itp.;
+
+- Program generuje spis treści;
+
+- Istnieją gotowe szablony dokumentów;
+
+- Pliki PDF generowane przy pomocy LaTeX-a są estetyczne wizualnie;
+
+- Możliwość tworzenia wykresów/diagramów za pomocą kodu, bez używania dodatkowych programów; 
+
+- LaTeX jest programem o wolnym dostępie – nie musimy za niego płacić;
+
+- Pliki LaTeX-a możemy otwierać przy pomocy wielu narzędzi. Możemy używać programów zainstalowanych na komputerze lub wykorzystywać programy internetowe. W przypadku tych drugich istnieje możliwość dzielenia projektu między wiele osób. 
+
+Wady:
+
+- Konieczność stosowania odpowiednich bibliotek;
+
+- Trudniejsza zmiana np. rodzaju czcionki, marginesów i innych parametrów formatowania pliku w porównaniu do narzędzi typu Word;
+
+- Komunikaty o błędach są często mało zrozumiałe;
+
+- Aby korzystać z LaTeX-a trzeba nauczyć się odpowiednich komend oraz poznać składnię.
+
+
