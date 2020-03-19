@@ -1,35 +1,53 @@
 LaTeX:
 
+\indent
+
 Zalety:
+\begin{itemize}
 
-- Składnia LaTeX-a jest używana jako wzorowa m. in. do narzędzi Libre, Open Office oraz na różnego rodzaju forach matematycznych i fizycznych;
+\item[-]
+Składnia LaTeX-a jest używana jako wzorowa m. in. do narzędzi Libre, Open Office oraz na różnego rodzaju forach matematycznych i fizycznych;
 
-- Możliwość zapisu znaków specjalnych (w tym znaków używanych w matematyce) przy pomocy odpowiednich komend;
+\item[-]
+Wszystkie tytuły sekcji / podpisy tabel, grafik, wykresów są jednakowo formatowane;
 
-- Wszystkie tytuły sekcji / podpisy tabel, grafik, wykresów są jednakowo formatowane;
+\item[-]
+LaTeX automatycznie numeruje sekcje, rysunki, tabele, cytowania, przypisy itp.;
 
-- LaTeX automatycznie numeruje sekcje, rysunki, tabele, cytowania, przypisy itp.;
+\item[-]
+Program generuje spis treści;
 
-- Program generuje spis treści;
+\item[-]
+Istnieją gotowe szablony dokumentów;
 
-- Istnieją gotowe szablony dokumentów;
+\item[-]
+Pliki PDF generowane przy pomocy LaTeX-a są estetyczne wizualnie;
 
-- Pliki PDF generowane przy pomocy LaTeX-a są estetyczne wizualnie;
+\item[-]
+Możliwość tworzenia wykresów/diagramów za pomocą kodu, bez używania dodatkowych programów; 
 
-- Możliwość tworzenia wykresów/diagramów za pomocą kodu, bez używania dodatkowych programów; 
+\item[-]
+LaTeX jest programem o wolnym dostępie – nie musimy za niego płacić;
 
-- LaTeX jest programem o wolnym dostępie – nie musimy za niego płacić;
+\item[-]
+Pliki LaTeX-a możemy otwierać przy pomocy wielu narzędzi. Możemy używać programów zainstalowanych na komputerze lub wykorzystywać programy internetowe. W przypadku tych drugich istnieje możliwość dzielenia projektu między wiele osób. 
+\end{itemize}
 
-- Pliki LaTeX-a możemy otwierać przy pomocy wielu narzędzi. Możemy używać programów zainstalowanych na komputerze lub wykorzystywać programy internetowe. W przypadku tych drugich istnieje możliwość dzielenia projektu między wiele osób. 
+\indent
 
 Wady:
-
-- Konieczność stosowania odpowiednich bibliotek;
-
-- Trudniejsza zmiana np. rodzaju czcionki, marginesów i innych parametrów formatowania pliku w porównaniu do narzędzi typu Word;
-
-- Komunikaty o błędach są często mało zrozumiałe;
-
-- Aby korzystać z LaTeX-a trzeba nauczyć się odpowiednich komend oraz poznać składnię.
+\begin{itemize}
 
 
+\item[-]
+Konieczność stosowania odpowiednich bibliotek;
+
+\item[-]
+Trudniejsza zmiana np. rodzaju czcionki, marginesów i innych parametrów formatowania pliku w porównaniu do narzędzi typu Word;
+
+\item[-]
+Komunikaty o błędach są często mało zrozumiałe;
+
+\item[-]
+Aby korzystać z LaTeX-a trzeba nauczyć się odpowiednich komend oraz poznać składnię.
+\end{itemize}
