@@ -1,11 +1,23 @@
 Jako iż tworzymy projekt duży projekt zespołowy, musieliśmy rozejrzeć się za narzędziem, ktore ułatwi nam prace. Po namyśle wybraliśmy system kontroli wersji - git, na platformie github.com.
 
 Zalety:
+\begin{itemsize}
+	\item[-]
 	-Kontrola wersji
+	
+	\item[-]
 	-Struktura branchowa
+	
+	\item[-]
 	-Miejsce na hosting plików
+	
+	\item[-]
 	-Możliwość zastosowania w przyszłej karierze zawodowej
 	
 Wady:
+	\item[-]
 	-Wymagane nauczenie się działania systemu
+	
+	\item[-]
+	-Poznanie składni komend
 	
