@@ -1,0 +1,11 @@
+Jako iż tworzymy projekt duży projekt zespołowy, musieliśmy rozejrzeć się za narzędziem, ktore ułatwi nam prace. Po namyśle wybraliśmy system kontroli wersji - git, na platformie github.com.
+
+Zalety:
+	-Kontrola wersji
+	-Struktura branchowa
+	-Miejsce na hosting plików
+	-Możliwość zastosowania w przyszłej karierze zawodowej
+	
+Wady:
+	-Wymagane nauczenie się działania systemu
+	
