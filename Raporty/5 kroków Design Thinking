@@ -1,0 +1,20 @@
+\subsubsection{Pięć kroków Design Thinkig'u}
+Model ten składa się z 5 etapów: empatyzacji, definiowania problemu, kreatywnego myślenia, tworzenia prototypu, testowania.
+\begin{figure}[h]
+ 	\centering
+ 	\includegraphics[width=0.8\textwidth]{5krokow.PNG}
+ 	\caption{Pięć kroków Design Thinkig'u}
+ \end{figure}
+ \begin{itemize}
+     \item \textbf {Empatyzacja}\newline \newline
+     W pierwszym kroku skupiamy się na człowieku, czyli odbiorcy naszego projektu. Staramy się zrozumieć czego potrzebuje, dlaczego tego potrzebuje, w jaki sposób będzie z tego korzystał. Robimy to, ponieważ często tworzymy innym, rozwiązujemy cudze problemy, przez co musimy je najpierw dobrze zrozumieć. \newline
+     \item \textbf{Definiowanie problemu}\newline \newline
+     Gdy już poznamy odbiorcę, naszym zadaniem jest odpowiednie zdefiniowanie problemu, odnalezienie czegoś przydatnego, czegoś co zaspokoi jego potrzeby. Jest to ważny etap, ponieważ od tego zależy nad czym dalej będziemy pracować.\newline
+     \item\textbf{Kreatywne myślenie}\newline \newline
+     W następnym etapie podchodzimy do problemu jakby nie istniały żadne ograniczenia finansowe ani fizyczne, uruchamiamy kreatywne myślenie. W tym kroku nie zależy nam na odnalezieniu odpowiedniego rozwiązania, tylko na wymyśleniu jak najrozmaitszych pomysłów, co się przyczyni do innowacyjności projektu.\newline
+     \item\textbf{Tworzenie prototypu}\newline \newline
+     Następnie według tego modelu należy stworzyć prototyp. Powinien on być tani oraz szybki do zrobienia. Jego zadaniem jest ułatwienie wyobrażenia potencjalnych wad, niedociągnięć oraz wywołanie emocji wśród osób testujących, przez co będą w stanie więcej zauważyć, podać konkretniejsze uwagi.\newline
+     \item\textbf{Testowanie}\newline \newline
+     Ostatni krok polega na przeanalizowaniu wszystkich zdobytych informacji oraz wykorzystaniu ich w trakcie testowania. Osobom testującym należy zapewnić warunki, w których normalnie by korzystały z tego projektu. W tym ostatnim etapie dowiadujemy się jeszcze więcej o użytkowniku. Dzięki testowaniu widzimy czy nasze rozwiązanie jest odpowiednie, co powinniśmy zmienić, a może nawet zacząć proces od początku.
+ \end{itemize}
+
