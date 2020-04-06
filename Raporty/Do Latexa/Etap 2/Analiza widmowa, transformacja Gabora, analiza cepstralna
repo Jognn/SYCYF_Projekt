@@ -1,0 +1,49 @@
+\subsection{Analiza widmowa}
+Teoria Fouriera mówi nam, że każdy sygnał elektryczny opisany w dziedzinie czasu może zostać opisany za pomocą jednego lub więcej sygnałów sinusoidalnych z odpowiednią amplitudą, fazą i częstotliwością. Oznacza to, że każdy sygnał przedstawiony w dziedzinie czasu możemy przedstawić również w dziedzinie częstotliwości. Pomiary w funkcji częstotliwości mówią nam ile energii znajduje się na poszczególnych częstotliwościach. Z odpowiednim filtrowaniem przebieg może zostać rozłożony na osobne przebiegi sinusoidalne lub składowe widmowe które następnie możemy oddzielnie analizować. Niektóre pomiary wymagają posiadania kompletnej informacji o częstotliwości, fazie i amplitudzie sygnału. Jednak dla sporej grupy pomiarów nie musimy posiadać informacji o przesunięciu fazowym składowych sinusów. Takiego typu pomiary nazywamy analizą widmową.
+%https://pl.wikipedia.org/wiki/Analiza_widmowa
+%https://www.amt.pl/pl/faq/cty/analiza-widmowa
+\subsection{Transformacja Gabora}
+Transformacja Gabora  jest szczególnym przypadkiem krótkotrwałej transformacji Fouriera. Służy do określania częstotliwości sinusoidalnej i zawartości fazowej lokalnych odcinków sygnału zmieniającego się w czasie. Funkcja do przekształcenia jest najpierw mnożona przez funkcję Gaussa, którą można uznać za funkcję okna, a wynikowa funkcja jest następnie przekształcana za pomocą transformaty Fouriera w celu uzyskania analizy czasowo-częstotliwościowej. Funkcja okna oznacza, że sygnał w pobliżu analizowanego czasu będzie miał większą wagę. 
+Uzyskanie pełnego zestawu współczynników Gabora możliwe jest przy użyciu wzoru:
+\begin{figure}[h]
+     	\centering
+     	\includegraphics[width=0.8\textwidth]{transG1.png}
+     	\caption{Współczynniki Gabora}
+    \end{figure}
+gdzie: x(i) – analizowany sygnał, γ(i) – okno analizy, funkcja bi-ortogonalna do okna syntezy h(i), przy czym:
+\begin{figure}[h]
+     	\centering
+     	\includegraphics[width=0.8\textwidth]{transG2.png}
+     	\caption{h(i)}
+    \end{figure}
+Analizowany sygnał x(i) może być przedstawiony jako suma:
+\begin{figure}[h]
+     	\centering
+     	\includegraphics[width=0.8\textwidth]{transG3.png}
+     	\caption{x(i)}
+    \end{figure}
+Transformacja Gabora jest przydatnym narzędziem w procesie przetwarzania i analizy sygnałów fonicznych. Jednak jej zastosowanie jest ograniczone ze względu na trudności z obliczaniem współczynników Cm,n oraz stałą szerokość okna analizy ograniczającą jej precyzję w dziedzinie czasu i częstotliwości.
+%https://en.wikipedia.org/wiki/Gabor_transform
+%http://bc.pollub.pl/Content/659/PDF/D-249%20Kozie%C5%82%20Grzegorz.pdf?fbclid=IwAR0XoF6klE92YCXt3DSkiF-6OUbWk7NrBLBOJJnCydRa_hN_1P2jxCQyJpM
+\subsection{Analiza Cepstrum}
+Analiza cepstrum jest nieliniową techniką przetwarzania sygnału o różnorodnych zastosowaniach w obszarach takich jak przetwarzanie mowy i obrazu.
+Znane są dwie definicje cepstrum widma mocy C(τ):
+\begin{figure}[h]
+     	\centering
+     	\includegraphics[width=0.8\textwidth]{Acepstrum1.png}
+     	\caption{Dwie definicje cepstrum widma mocy}
+    \end{figure}
+    
+We wzorach SAA(f) reprezentuje dwuwstęgowe widmo mocy sygnału f(t), czyli SAA(f)=|F(f(t))|2. Porównując obie definicje można zauważyć, że jedna z nich wykorzystuje transformację Fouriera a druga transformację odwrotną. Jednak w wyniku obydwu przekształceń otrzymujemy reprezentację cepstralną przedstawiającą sygnał w dziedzinie czasu τ. Jest to dziedzina odpowiadająca odwrotności częstotliwości.
+W przypadku sygnału cyfrowego cepstrum może być obliczone jako zestaw współczynników Cr na podstawie równania:
+\begin{figure}[h]
+     	\centering
+     	\includegraphics[width=0.8\textwidth]{Acepstrum2.png}
+     	\caption{Zestaw współczynników Cr}
+    \end{figure}
+gdzie: r - rząd współczynnika cepstralnego, lpr – liczba próbek w ramce, i – numer kolejnej próbki widma, Ai – amplituda i-tej próbki, fp – częstotliwość próbkowania, fc – maksymalna częstotliwość uwzględniona w analizie cepstralnej.
+
+%http://bc.pollub.pl/Content/659/PDF/D-249%20Kozie%C5%82%20Grzegorz.pdf?fbclid=IwAR0XoF6klE92YCXt3DSkiF-6OUbWk7NrBLBOJJnCydRa_hN_1P2jxCQyJpM
+%https://en.wikipedia.org/wiki/Cepstrum
+
+
