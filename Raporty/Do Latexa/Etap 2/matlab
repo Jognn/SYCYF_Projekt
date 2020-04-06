@@ -1,0 +1,9 @@
+\subsection{Matlab}
+Matlab dzięki aplikacji „Signal Processing Toolbox” zapewnie funkcje do wstępnej analizy i przetwarzania sygnałów. Zawiera między
+innymi takie opcje jak wygładzanie sygnałów, korzystanie z licznych filtrów, zmiana częstotliwości próbkowania sygnału. 
+Pozwala na wyświetlenie sygnału w dziedzinie czasu, widma oraz spektogramu.
+\begin{figure}[h]
+     	\centering
+     	\includegraphics[width=0.8\textwidth]{matlab1.PNG}
+     	\caption{Sygnał w dziedzinie czasu, widmo oraz spektogram}
+    \end{figure}
