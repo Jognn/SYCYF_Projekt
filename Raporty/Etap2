@@ -1,0 +1,21 @@
+MODYFIKACJA SZUMU
+Sygnał jaki otrzymaliśmy do zbadania przypomina biały szum. Kierując się tą informacją postanowiliśmy poszukać metod, które pozwoliłyby na redukcje szumu oraz ustabilizowanie ścieżki dźwiękowej – w efekcie – usłyszenie zaszyfrowanej wiadomości. Jedną z metod przetwarzania sygnału jest właśnie modyfikacja szumu, czyli zastosowanie sygnału zwanego DITHER (do tej pory nie posiada on polskiej nazwy). Polega on na eliminacji szumu poprzez dodanie do sygnału… szumu. Ściślej mówiąc jest to losowy szum, dodawany do sygnału wejściowego. W efekcie otrzymujemy inny szum, słyszalny jako bardzo ciche syczenie. Pozornie nie jest to tylko usuwanie jednego szumu i zamienienie do drugim. Główną konsekwencją zastosowania sygnału DITHER jest lepsza słyszalność naszego pierwotnego sygnału. Dzieje się tak, ponieważ do szumu białego jesteśmy przyzwyczajeni, gdyż otacza nas on wszędzie na co dzień, więc jego słyszalność jest mniej zauważalna. Do tego należy wziąć pod uwagę, że uzyskany sygnał jest „odfiltrowywany” a poza tym stosuje się uśrednianie. Działanie tej metody przedstawia rysunek: (dither.jpg) 
+(pod obrazkiem) Pierwszy przebieg (a) to sygnał sinusoidalny bezpośrednio po kwantyzacji. Jeżeli jednak dodamy do sygnału oryginalnego dither i skwantujemy taki sygnał, otrzymamy takie „dziwadło”, jak na drugim rysunku (b). Fakt, że niewiele ma on wspólnego ani z sinusoidą, ani z prostokątem, ani z żadnym innym „normalnym” przebiegiem. Jeżeli jednak zastosujemy uśrednianie w czasie 32 okresów, otrzymamy nieco „pogryziony” przebieg, który jednakże już bardziej przypomina sinusoidę, a po uśrednieniu w czasie 960 okresów nasz sygnał wygląda niemalże jak idealna sinusoida.   
+https://livesound.pl/tutoriale/4960-dither.-walka-z-szumem-jego-wlasna-bronia
+
+MODULACJA 
+W procesie modulacji sygnał informacyjny zostaje skojarzony z pewnym parametrem sygnału dużej częstotliwości, tzw. fali nośną. Wyróżnianych jest wiele typów modoluacji, my jednak skupiliśmy się na tych rodzajach, które mogłyby być użyte do zmodyfikowania badanego przez nas sygnału: 
+Modulacja amplitudy: Najprostszym przykładem modulacji amplitudy jest dwustanowa modulacja OOK (On-Off Keying), która polega na włączaniu i wyłączaniu sygnału nośnej. Jest to elementarna forma modulacji cyfrowej. W podstawowej postaci modulacji amplitudy obwiednia sygnału nośnej odzwierciedla zmiany sygnału informacyjnego. 
+Modulacja częstotliwości: 
+1)	W modulacji FM częstotliwość fali nośnej zmienia się pod wpływem sygnału informacyjnego. Proces demodulacji sygnału zmodulowanego częstotliwościowo wymaga zamiany jej na modulację amplitudy przy wykorzystaniu obwodu rezonansowego, który pozwala na uzależnienie sygnału wyjściowego od zmian częstotliwości sygnału zmodulowanego. (modulacja.jpg)
+
+2)	Przykładem częstotliwości jest również FSK (Frequency Shift Keying). Częstotliwość nośnej w tym wypadku przyjmuje zamiennie dwie wartości, które reprezentują stany logiczne 0 i 1. W ten sposób można zrealizować transmisję ciągu bitów informacyjnych. 
+
+
+
+Rozpraszanie widma: Istotą metod transmisji z rozpraszaniem widma jest nadawanie sygnału w szerokim paśmie częstotliwości, przy poziomie sygnału znacznie poniżej poziomu szumów. Połączenie tych dwóch właściwości sygnału pozwala osiągnąć założoną przepustowość kanału oraz jednocześnie powoduje, że sygnał taki trudno jest wykryć. 
+https://elektronikab2b.pl/technika/3851-modulacja-przeglad-podstawowych-typow
+
+
+ZMIANA CZĘSTOTLIWOŚCI PRÓBKOWANIA
+Podczas cyfrowego nagrywania sygnału dźwiękowego pochodzącego ze źródła analogowego częstotliwość próbkowania oznacza odstępy czasu między kolejnymi próbkami. Im większa jest jej wartość, tym mniej traci się z pierwotnego materiału audio.  Aby dołączyć do sygnału dodatkowe dane wystarczy zmodyfikować sygnał rozpraszający zgodnie z przyjętymi założeniami a następnie przy jego pomocy spróbkować oryginalne nagranie. Taką techniką mógł zostać przetworzony badany przez nas sygnał. 
