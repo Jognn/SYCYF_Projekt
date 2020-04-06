@@ -1,0 +1,36 @@
+\subsection{Transformacja falkowa}
+    Jest to metoda, która opiera się przekształceniach liniowych funkcji. Niestety z tej transformacji rzadko uzyskuje sie precyzyjny wynik informacji np. o częstotliwościach zawartych w sygnale („pomiędzy piątą a siódmą sekundą występowała
+    częstotliwość 100Hz”). Dzieje się tak, ponieważ funkcja falkowa nie reprezentuje jednej częstotliwości lecz dany przedział częstotliwości, mowiący o chwili zmiany częstotliwości, a nie jej precyzyjnej wartości.
+    \newline \newline
+    \textbf{Definicja:}
+    \begin{figure}[h]
+     	\centering
+     	\includegraphics[width=0.8\textwidth]{falkowa.PNG}
+     	\caption{Definicja transformacji falkowej}
+    \end{figure}
+    
+    Wynikiem transformacji falkowej są współczynniki, których wartości są zależna od parametrów a i b oraz sygnału s(t). Dla danych wartości a i b współczynnik jest miarą podobieństwa pomiędzy daną falką a wybranym fragmentem sygnału s(t).
+    
+    \begin{figure}[ht]
+     	\centering
+     	\includegraphics[width=0.8\textwidth]{wynik_falki.PNG}
+     	\caption{Wynik Transformacji Falkowej}
+    \end{figure}
+
+\subsection{Least Significant Bit (LSB)}
+     Metoda skupiając się na sposobie zakodowania plików źródłowych (.wav) sygnału. W tym sposobie analizowane są wartości ostatnich bitów, każdego z bajtów w pliku binarnym. Jest to powszechny sposób niskopoziomowego ukrycia wiadomości, stosowany w Steganografii.
+    \newline \newline
+    Pliki te we wglądzie hexdump wyglądają następująco:
+    
+    \begin{figure}[ht]
+     	\centering
+     	\includegraphics[width=0.8\textwidth]{hexdump.PNG}
+     	\caption{Hexdump}
+    \end{figure}
+    
+    Następnie z odczytano kolejno chunków danych (zaznaczone kolorem czerwonym), możemy sprawdzić wartości ostatnich bitów. Algorytmy stosowane w metodzie LSB podążają daną sekwencją kodując wiadomość z określonym cyklem np. co 2,3 chunk. Znajdując sekwencje poprzez Wczytanie tych ostatnich wartości jesteśmy wtedy wstanie odtworzyć ukrytą zawartość.
+    
+    %ŹRÓDŁA:
+         %https://medium.com/analytics-vidhya/get-secret-message-from-audio-file-8769421205c3
+         %https://pl.wikipedia.org/wiki/Transformacja_falkowa
+         %http://home.agh.edu.pl/~jsw/oso/FT.pdf
