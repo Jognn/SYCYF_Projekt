@@ -1,0 +1,11 @@
+Dlaczego Python jest najlepszym możliwym wyborem w celu wykonywania transformat?
+1.	Jest to język interpretowany, tzn. w prosty sposób możemy powiedzieć, że mamy do czynienia z powłoką i interpreterem, który czyta wpisany przez nas kod linijka po linijce podejmując konkretne działania.
+2.	Python to język, który wciąż się rozwija, cały czas pojawiają się nowe moduły, których użycie sprowadza się do szybkiego spojrzenia na dokumentację.
+Do przydatnych modułów i bibliotek należą:
+NumPy - moduł Pythona, który zawiera wszystkie niezbędne klasy i funkcje potrzebne do reprezentacji naszych wektorów. Mamy możliwość operacji na tablicach, macierzach itd. mając przy tym dostęp do wszystkich niezbędnych funkcji, jak odwracanie, transpozycja itp.
+Matplotlbi - moduł służący do tworzenia wszelkiego rodzaju wykresów i wizualizacji. Umożliwia kreślenie wykresów 2D oraz 3D, histogramów i wielu więcej diagramów.
+FFT – Fast Fourier Transform - daje nam informację o częstotliwościach powiązanych z naszym sygnałem. Pokrótce, transformata „przekształca” jedną funkcję w drugiej, jednak zmieniana jest dziedzina – z dziedziny czasu przechodzimy do dziedziny częstotliwości. Jest bardzo wydajna.
+Splot - podstawowy proces jeśli chodzi o filtrację sygnałów audio czy obrazów. Zaletą FFT jest fakt, iż operację splotu w dziedzinie czasu możemy przedstawić jako mnożenie transformat sygnałów w dziedzinie częstotliwości.
+Okna - Okna często używane są razem z FFT. Stosuje się je do prezentacji wyników FFT.
+
+https://mirror.1tbps.org/old-yc/youthcoders.net/uploaded/konkurs2/j.nosal-dsp_python.pdf
