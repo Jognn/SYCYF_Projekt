@@ -452,7 +452,7 @@ Metod stegonograficznych istnieje dużo i w naszym czasie ilość ich rośnie. A
 \item filtrowanie
 \item metoda najmniej znaczacego bitu
 \item modyfikacja szumu
-\item maskowanie rownoczesne
+\item maskowanie rownoczesne i czasowe
 \item zmiana czestotliwosci probkowania 
 \item modulacja
 \item rozpraszanie widma
@@ -521,11 +521,11 @@ Pierwszy przebieg (a) to sygnał sinusoidalny bezpośrednio po kwantyzacji. Jeż
 Fakt, że niewiele ma on wspólnego ani z sinusoidą, ani z prostokątem, ani z żadnym innym „normalnym” przebiegiem. Jeżeli jednak zastosujemy uśrednianie w czasie 32 okresów, otrzymamy nieco „pogryziony” przebieg, który jednakże już bardziej przypomina sinusoidę, a po uśrednieniu w czasie 960 okresów nasz sygnał wygląda niemalże jak idealna sinusoida.   
 
 
-\subsubsection{Maskowanie równoczesne}
+\subsubsection{Maskowanie równoczesne i czasowe}
 
-Maskowanie równoczesne – efekt psychoakustyczny, które polega na zagłuszaniu dźwięków przez inne dźwięki. Zjawisko to polega na tym, że w zależności od natężeń i częstotliwości dźwięków, pewne tony stają się niesłyszalne, podczas gdy w sąsiedztwie występują inne dźwięki. Sygnał maskujący nazywamy maskerem. \newline \newline
+\textbf{Maskowanie równoczesne} – efekt psychoakustyczny, które polega na zagłuszaniu dźwięków przez inne dźwięki. Zjawisko to polega na tym, że w zależności od natężeń i częstotliwości dźwięków, pewne tony stają się niesłyszalne, podczas gdy w sąsiedztwie występują inne dźwięki. Sygnał maskujący nazywamy maskerem. \newline \newline
  Efekty maskowania służą do eliminowania szumów w sygnale. Gdy ustawimy odpowiedni próg maskowania, sygnał użyteczny może zamaskować szum.\newline \newline
-Maskowanie nierównoczesne (czasowe) – efekt psychoakustyczny, który polega na zagłuszaniu pewnych dźwięków przez inne dźwięki. \newline \newline
+\textbf{Maskowanie nierównoczesne (czasowe)} – efekt psychoakustyczny, który polega na zagłuszaniu pewnych dźwięków przez inne dźwięki. \newline \newline
 W odróżnieniu od maskowania równoczesnego, dźwięk maskujący i dźwięk zamaskowany nie występują w tym samym czasie. Kiedy dźwięk cichszy występuje do kilkunastu sekund wcześniej niż dźwięk głośniejszy (do kilkunastu ms) mamy do czynienia z premaskowaniem (maskowanie wstecz). Zjawisko to zachodzi dzięki temu, że układ słuchowy szybciej przetwarza dźwięki głośniejsze, dzięki czemu może zamaskować wcześniejszy, cichszy dźwięk. Istnieje także maskowanie wprzód (postmaskowanie), które zależy od głośności i czasu trwania tonu maskującego. Postmarkowanie może występować, kiedy głośniejszy dźwięk występuje do kilkuset ms przed dźwiękiem cichszym.
 
 \subsubsection{Zmiana częstotliwości próbkowania}
@@ -553,7 +553,98 @@ Wyróżnianych jest wiele typów modulacji, my jednak skupiliśmy się na tych r
 \subsubsection{Rozpraszanie widma}
 Istotą metod transmisji z rozpraszaniem widma jest nadawanie sygnału w szerokim paśmie częstotliwości, przy poziomie sygnału znacznie poniżej poziomu szumów. \newline \newline
 Połączenie tych dwóch właściwości sygnału pozwala osiągnąć założoną przepustowość kanału oraz jednocześnie powoduje, że sygnał taki trudno jest wykryć. 
-\subsection{Cyfrowe przetwarzania sygnalow dzwiekowych}
+
+\subsection{Cyfrowe przetwarzania sygnałów dzwiekowych}
+
+W poprzednim podrozdziale zapoznaliśmy się z metodami \textbf{ukrywania} informacji w sygnalie cyfrowym, ale co zrobić, jeżeli powinniśmy dokonać odwrotnej operacji, nie znając dokładnie \textbf{jak} informacja została zakodowana?\newline \newline
+W takim przypadku zwracamy się do cyfrowego przetwarzania sygnałów (w naszym przypadku dzwiękowym) którego zadanie polega na analizie cyfrowego sygnału (w naszym przypadku analizie widmowej).\newline \newline
+Dziedzina cyfrowego przetwarzania sygnałów zawiera wiele dobrze opracowanych teoretycznie metod operujących na cyfrowej postaci sygnału dźwiękowego. W niniejszym podrozdziale został przedstawiony krótki przegląd najpopularniejszych metod przetwarzania sygnałów:
+
+\begin{itemize}
+	\item transformacja Fouriera
+	\item filtrowanie (zasady i struktura są takie same jako w steganografii)
+	\item transformacja falkowa
+	\item transformacja Gabora
+	\item analiza cepstralna
+\end{itemize}	
+
+\subsubsection{Transformacja Fouriera}
+
+\textbf{DFT (Dyskretna Transformata Fouriera)} - jedna z najbardziej popularnych i najbardziej wydajnych procedur spotykanych w dziedzinie cyfrowego przetwarzania sygnałów.\newline \newline
+ Pozwala ona analizować sygnały w sposób niemożliwy w przypadku sygnałów analogowych. Jest to procedura matematyczna, używana do wyznaczenia zawartości harmonicznej lub częstotliwościowej sygnału dyskretnego (zbiór wartości otrzymany w wyniku próbkowania w dziedzinie czasu sygnału ciągłego).\newline \newline
+ Podstawą obliczeń jest ciągłe przekształcenie Fouriera, zdefiniowane następująco:\newline
+	\includegraphics[width=0.3\textwidth]{fourier1}
+
+, gdzie x(n) jest dyskretnym ciągiem spróbkowanych wartości w dziedzinie czasu.\newline\newline
+Przy pomocy powyższego równania, funkcję x(t) ciągłą w dziedzinie czasu możemy przetworzyć na funkcję X(f) ciągłą w dziedzinie częstotliwości. Dzięki temu możemy przenieść nasz sygnał z dziedziny czasu do dziedziny częstotliwości, tj. wyznaczyć jego widmo w postaci ciągłej. Umożliwia nam to odczytanie zawartości częstotliwościowej naszego sygnału.\newline\newline
+Wraz z rozwojem technologii i nadejściem komputera, cały dorobek matematyczny w dziedzinie przetwarzania sygnałów, doprowadził do zdefiniowania DFT jako dyskretnego ciągu X(m) w dziedzinie częstotliwości, określonego równaniem:\newline
+\includegraphics[width=0.3\textwidth]{fourier2}
+
+, gdzie x(n) jest dyskretnym ciągiem spróbkowanych wartości w dziedzinie czasu. \newline\newline
+Wartość X(0) w dziedzinie częstotliwości określa składową stałą w widmie sygnału x(n).
+Z zależności Eulera wynika, że powyższe równanie jest równoważne z: \newline
+\includegraphics[width=0.6\textwidth]{fourier3}
+
+Powyższy wzór nazywany jest równaniem DFT, dla którego:
+
+\begin{itemize}
+\item X(m)  odpowiada m-tej składowej wyjściowej DFT, tj. X(0), X(l), X(2), X(3) itd.;
+\item m  indeksowi próbek wyjściowych DFT w dziedzinie częstotliwości, m =0, 1, 2, 3, ..., N-1 
+\item x(n)  ciągowi próbek wejściowych, x(0), x(l), x(2), x(3) itd.. 
+\item n  indeksowi próbek wejściowych w dziedzinie czasu, n= 0, 1,2,3,...,N-1 
+\item N  liczbie próbek ciągu wejściowego oraz liczbie punktów częstotliwości w ciągu wyjściowym DFT.
+\end{itemize}
+Każdy człon wyjściowy X(m) DFT stanowi sumę punkt po punkcie iloczynu ciągu wartości wejściowego sygnału i przebiegu zespolonego postaci cos(g) – jsin(g).\newline\newline
+Wartość X(0) w dziedzinie częstotliwości określa składową stałą w widmie sygnału x(n). Gdy X(0) nie jest równa zero, to znaczy że ciąg x(n) jest przesunięty o składową stałą i ma pewną niezerową wartość średnią.\newline\newline
+Jeśli DFT potraktujemy jako „czarną skrzynkę”, to miałaby ona następujące właściwości: sygnały wchodzące i wychodzące są sygnałami dyskretnymi oraz liczba próbek wchodzących do procesu jest równa liczbie próbek z niego wychodzących.\newline\newline
+
+\textbf{Przykład DFT}
+   \begin{figure}[ht]
+    	\centering
+    	\includegraphics[width=0.6\textwidth]{fourier4}
+   \end{figure}
+
+\subsubsection{Transformacja falkowa}
+Jest to metoda, która opiera się przekształceniach liniowych funkcji. Niestety z tej transformacji rzadko uzyskuje sie precyzyjny wynik informacji np. o częstotliwościach zawartych w sygnale („pomiędzy piątą a siódmą sekundą występowała
+częstotliwość 100Hz”). Dzieje się tak, ponieważ funkcja falkowa nie reprezentuje jednej częstotliwości lecz dany przedział częstotliwości, mowiący o chwili zmiany częstotliwości, a nie jej precyzyjnej wartości.
+\newline \newline
+\textbf{Definicja:}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{falkowa.PNG}
+	\caption{Definicja transformacji falkowej}
+\end{figure}
+
+Wynikiem transformacji falkowej są współczynniki, których wartości są zależna od parametrów a i b oraz sygnału s(t). Dla danych wartości a i b współczynnik jest miarą podobieństwa pomiędzy daną falką a wybranym fragmentem sygnału s(t).
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{wynik_falki.PNG}
+	\caption{Wynik Transformacji Falkowej}
+\end{figure}
+
+\subsubsection{Transformacja Gabora}
+Transformacja Gabora  jest szczególnym przypadkiem krótkotrwałej transformacji Fouriera. Służy do określania częstotliwości sinusoidalnej i zawartości fazowej lokalnych odcinków sygnału zmieniającego się w czasie. Funkcja do przekształcenia jest najpierw mnożona przez funkcję Gaussa, którą można uznać za funkcję okna, a wynikowa funkcja jest następnie przekształcana za pomocą transformaty Fouriera w celu uzyskania analizy czasowo-częstotliwościowej. Funkcja okna oznacza, że sygnał w pobliżu analizowanego czasu będzie miał większą wagę. 
+Uzyskanie pełnego zestawu współczynników Gabora możliwe jest przy użyciu wzoru:\newline
+\includegraphics[width=0.4\textwidth]{transG1.png}
+
+,gdzie: x(i) – analizowany sygnał, γ(i) – okno analizy, funkcja bi-ortogonalna do okna syntezy h(i), przy czym:\newline
+	\includegraphics[width=0.4\textwidth]{transG2.png}
+
+Analizowany sygnał x(i) może być przedstawiony jako suma:\newline
+	\includegraphics[width=0.4\textwidth]{transG3.png}
+
+Transformacja Gabora jest przydatnym narzędziem w procesie przetwarzania i analizy sygnałów fonicznych. Jednak jej zastosowanie jest ograniczone ze względu na trudności z obliczaniem współczynników Cm,n oraz stałą szerokość okna analizy ograniczającą jej precyzję w dziedzinie czasu i częstotliwości.
+\subsection{Analiza Cepstrum}
+Analiza cepstrum jest nieliniową techniką przetwarzania sygnału o różnorodnych zastosowaniach w obszarach takich jak przetwarzanie mowy i obrazu.
+Znane są dwie definicje cepstrum widma mocy C(τ):\newline
+	\includegraphics[width=0.28\textwidth]{Acepstrum1.png}
+
+We wzorach SAA(f) reprezentuje dwuwstęgowe widmo mocy sygnału f(t), czyli SAA(f)=|F(f(t))|2. Porównując obie definicje można zauważyć, że jedna z nich wykorzystuje transformację Fouriera a druga transformację odwrotną. Jednak w wyniku obydwu przekształceń otrzymujemy reprezentację cepstralną przedstawiającą sygnał w dziedzinie czasu τ. Jest to dziedzina odpowiadająca odwrotności częstotliwości.
+W przypadku sygnału cyfrowego cepstrum może być obliczone jako zestaw współczynników Cr na podstawie równania: \newline
+	\includegraphics[width=0.3 \textwidth]{Acepstrum2.png}
+gdzie: r - rząd współczynnika cepstralnego, lpr – liczba próbek w ramce, i – numer kolejnej próbki widma, Ai – amplituda i-tej próbki, fp – częstotliwość próbkowania, fc – maksymalna częstotliwość uwzględniona w analizie cepstralnej.
+
 
 \subsection{Możliwość wykorzystania podanych metod według zadania projektowego}
 
