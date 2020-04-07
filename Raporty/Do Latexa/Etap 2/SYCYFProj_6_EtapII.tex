@@ -690,10 +690,46 @@ Do analizy rozpatrywanego sygnalu cyfrowego powinniśmy byli dobrać pewne narz�
 
 \subsection{Możliwość wykorzystania podanych metod według zadania projektowego}
 
-Żeby zastanowić, z których metod będziemy korzystać się
 
+Metod oraz dostępnych narzędzi jest wiele, różnią się one sposobem podejścia do problemu. Większość opiera się na samej istocie przetwarzania sygnału, lecz istnieją także takie jak LSB, które skupiają się na totalnie innym myśleniu (sprawdzanie formatowania pliku). Po grupowej dyskusji i namyślę postanowiliśmy wybrać kilka z uprzednio napisanych metod, które mogą się nam przydać.
 
-\subsection{Wnioski}
+\paragraph{Sprawdzenie metody analizy widmowej oraz filtrowania}
+Aby upewnić się, że to podejście jest prawidłowe wprowadziliśmy jeden z sygnałów ("signal100.wav") do programu AudaCity z celem zbadania widma sygnału. Rezultat wyglądał następująco:
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{widmo_audacity.PNG}
+	\caption{Analiza widmowa sygnału "singal100.wav" w programie AudaCity}
+\end{figure}
+
+Na wykresie bardzo dobrze można zauważyć, iż nasz sygnał posiada w sobie dużo niepotrzebnego szumu. Zatem następnym krokiem jaki podjęliśmy było przeprowadzenie naszych danych przez filtr o wartości 38dB, odrzucający wszystkie zbędne nam częstotliwości. Co w rezultacie dało nam przejrzysty i czysty dźwięk stukania, nie jest to niestety dla nas konkretna odpowiedź. 
+
+\paragraph{Metoda LSB} Nasza grupa wierzy, że jest to jedna z lepszych metod. W tym celu szukamy narzędzi oraz pracujemy nad pythonowym kodem (korzystającym z bibliotek wave, struct), który miałby za zadanie odczytać ostatnie wartości bitów.
+
+\begin{lstlisting}[label=lst:wydruk,caption={Nasz dotychczasowy kod},language=Python,numbers=left]
+import wave
+import struct
+wav = wave.open("signal_100.wav", mode='rb')
+frame_bytes = bytearray(list(wav.readframes(wav.getnframes())))
+shorts = struct.unpack('H'*(len(frame_bytes)//2), frame_bytes)
+
+extractedLSB = ""
+for i in range(0, len(shorts)):
+extractedLSB += str(shorts[i] & 1 )
+
+string_blocks = (extractedLSB[i:i+8] for i in range(0, len(extractedLSB), 8))
+decoded = ''.join(chr(int(char, 2)) for char in string_blocks)
+print(decoded[:500])
+wav.close()
+\end{lstlisting}
+
+\paragraph{Transformacje DFT i DCT} Z informacji wyczytanych w internecie, okazuje się że jest to odpowiednia metoda do zastosowania w naszym przypadku. Po wykonaniu transformacji Fouriera naszego sygnału w programie MatLab, korzystając ze znależonego w Internecie kodu, otrzymaliśmy dokładniejszą wersję widma sygnału, za pomocą którego możemy stwierdzić, że sygnał składa się nie z dwóch, a z 3 (!) różnych częstotliwości.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{widmo_F}
+	\caption{Analiza widmowa sygnału "singal.wav" wykonana za pomocą transformacji Fouriera}
+\end{figure}
 
 \section{Koncepcja}
 \label{sec:koncepcja}
