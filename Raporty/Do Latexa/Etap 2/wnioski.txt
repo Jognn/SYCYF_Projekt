@@ -1,0 +1,35 @@
+\section{Podsumowanie}
+\label{sec:podsumowanie}
+Metod oraz dostępnych narzędzi jest wiele, różnią się one sposobem podejścia do problemu. Większość opiera się na samej istocie przetwarzania sygnału, lecz istnieją także takie jak LSB, które skupiają się na totalnie innym myśleniu (sprawdzanie formatowania pliku). Po grupowej dyskusji i namyślę postanowiliśmy wybrać kilka z uprzednio napisanych metod, które mogą się nam przydać.
+
+\paragraph{Sprawdzenie metody analizy widmowej oraz filtrowania}
+ Aby upewnić się, że to podejście jest prawidłowe wprowadziliśmy jeden z sygnałów ("signal100.wav") do naszego kodu matlabowego przeznaczonego do analizy widma. Rezultat wyglądał następująco:
+    
+    \begin{figure}[h]
+     	\centering
+     	\includegraphics[width=0.8\textwidth]{widmo_audacity.PNG}
+     	\caption{Analiza widmowa sygnału "singal100.wav"}
+     \end{figure}
+
+Na wykresie bardzo dobrze można zauważyć, iż nasz sygnał posiada w sobie dużo niepotrzebnego szumu. Zatem następnym krokiem jaki podjęliśmy było przeprowadzenie naszych danych przez filtr o wartości 38dB, odrzucający wszystkie zbędne nam częstotliwości. Co w rezultacie dało nam przejrzysty i czysty dźwięk stukania, nie jest to niestety dla nas konkretna odpowiedź. Możemy jednak spróbować sprawdzić czy nie jest to wiadomość podana w jakimś kodzie (np Morse).
+
+\paragraph{Metoda LSB} Nasza grupa wierzy, że jest to jedna z lepszych metod. W tym celu szukamy narzędzi oraz pracujemy nad pythonowym kodem (korzystającym z bibliotek wave, struct), który miałby za zadanie odczytać ostatnie wartości bitów.
+
+    \begin{lstlisting}[label=lst:wydruk,caption={Nasz dotychczasowy kod},language=Python,numbers=left]
+        import wave
+        import struct
+        wav = wave.open("signal_100.wav", mode='rb')
+        frame_bytes = bytearray(list(wav.readframes(wav.getnframes())))
+        shorts = struct.unpack('H'*(len(frame_bytes)//2), frame_bytes)
+            
+        extractedLSB = ""
+        for i in range(0, len(shorts)):
+                extractedLSB += str(shorts[i] & 1 )
+        
+        string_blocks = (extractedLSB[i:i+8] for i in range(0, len(extractedLSB), 8))
+        decoded = ''.join(chr(int(char, 2)) for char in string_blocks)
+        print(decoded[:500])
+        wav.close()
+    \end{lstlisting}
+
+\paragraph{Transformacje DFT i DCT} Z informacji wyczytanych w internecie, okazuje się że jest to odpowiednia metoda do zastosowania w naszym przypadku. Niestety nasz zespół nie był w stanie jeszcze podjąć konkretnych środków do zweryfikowania podanej tezy. Na danym moment studiujemy to podejście i wierzymy, że może się ono okazać przydatne.
