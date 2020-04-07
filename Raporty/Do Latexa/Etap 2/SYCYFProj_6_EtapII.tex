@@ -417,11 +417,90 @@ Głównym zadaniem tego projektu jest wykrycie tajemniczej wiadomości "z kosmos
 
 \subsection{Steganografia}
 
-\subsubsection{Struktura steganologii}
+Steganografia - jest to nauka zajmująca się ochroną cennej informacji poprzez jej ukrywanie w innej nie mającej wartości. Do ukrywania danych zaczęto wykorzystywać sygnał w postaci cyfrowej. \newline Jeśli adwersarz nie będzie świadomy faktu istnienia ukrytej informacji, lub nie będzie znał miejsca jej ukrycia, to nie będzie w stanie jej odczytać. \newline \newline 
+Dalej zapoznamy się z tą nauką trochę bliżej, oraz przeanalizujemy metody cyfrowego przetwarzania sygnałów pod kątem ich przydatności w steganografii komputerowej, wykorzystującej dźwięk jako kontener.
+
+\subsubsection{Steganologia i jej struktura}
+ \begin{itemize}
+	\item \textbf {Steganologia - z czego się składa?}\newline \newline
+Steganologia obejmuje dwie dziedziny – steganografię zajmującą się ochroną informacji oraz przeciwstawną do niej steganoanalizę. Celem tej nauki jest ochrona informacji.\newline \newline  Steganologia nie dokonuje przekształceń informacji lecz zajmuje się ukrywaniem jej istnienia, tak by osoby postronne nie były w stanie stwierdzić jej istnienia.\newline \newline  Obecnie najczęściej wykorzystywana jest postać cyfrowa sygnału dźwiękowego a on sam przekazywany i przetwarzany jest w tej właśnie postaci. Występuje tu zjawisko uniezależnienia danych od nośnika. Będziemy dalej opracowywać metody powiązane bezpośrednio z danymi cyfrowymi.
+
+	\item \textbf {Struktura steganologii}\newline \newline
+	
+	Jak było już omówione, steganologia obejmuje dwie dziedziny: steganografię i stegoanalizę.\newline \newline
+	\textbf{Steganografia} zajmuje się ukrywaniem cennej informacji w innych danych nie mających wartości, tak by osoba postronna nie była w stanie wykryć istnienia dodatkowych danych. Dokonuje się tego poprzez wprowadzenie do oryginalnego nośnika niewielkich zmian, których ludzkie zmysły nie są w stanie wykryć. Istotne jest również zachowanie poprawnej wartości wszystkich parametrów, które mogą zostać zbadane podczas analizy sygnału. \newline \newline
+	\textbf{Steganoanaliza} zajmuje się wykrywaniem ukrytych informacji oraz ich odczytywaniem lub niszczeniem. \newline Możliwe jest to dzięki wnikliwej analizie nośników i badaniu ich parametrów. W przypadku gdy znacznie odbiegają one od spodziewanej wartości sygnał poddawany jest szczegółowej analizie ze względu na duże prawdopodobieństwo istnienia w nim ukrytych danych. \newline
+ \end{itemize}
 
 \subsubsection{Model systemu steganograficznego}
 
-\subsubsection{Metody steganograficzne}
+Przykładowy model systemu steganograficznego zaprezentowany został na rysunku niżej.
+
+  \begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{model}
+	\caption{Przykładowy model systemu steganograficznego}
+\end{figure}
+
+Przy komunikacji strony muszą uzgodnicz klucz steganograficzny, z którego będą korzystać, musi on zostać dostarczony w sposób bezpieczny, tak by przeciwnik nie miał możliwości zdobycia go. Gwarantuje on bezpieczeństwo systemu. Mając uzgodniony klucz nadawca dołącza za jego pomoca informację do kontenera. Często jest ona wcześniej szyfrowana. Niekiedy jednocześnie z informacją dołączany jest dodatkowy szum, który ma za zadanie dodatkowo utrudnić detekcję właściwej informacji. Przygotowany stegokontener jest przesyłany kanałem publicznym do odbiorcy, który za pomocą klucza odczytuje z niego dołączoną informację. Działanie takiego systemu polega na "grze" pomiędzy trzema graczami. Dwaj z nich porozumiewają się przesyłając kanałem publicznym informacje ukryte w innym nośniku. Trzeci z nich próbuje wykryć, która część przesyłanych danych zawiera utajnioną informację. Jeśli mu się to uda przystępuje do wyodrębniania wiadomości z nośnika. My w takim modelu występujemy tym trzecim graczem, który chcę zdobyć ukrytą informację.
+
+\subsection{Metody steganograficzne}
+
+Metod stegonograficznych istnieje dużo i w naszym czasie ilość ich rośnie. Ale chcemy na tym etapie skupić się na kilku z nich, a same: \newline
+\begin{itemize}
+\item dodawanie echa
+\item filtrowanie
+\item metoda najmniej znaczacego bitu
+\item modyfikacja szumu
+\item maskowanie rownoczesne
+\item zmiana czestotliwosci probkowania 
+\item modulacja
+\end{itemize}
+\subsubsection{Dodawanie echa}
+Echo - jest to odbicie dźwięku, które dociera do słuchacza z opóźnieniem po dźwięku bezpośredniego.\newline\newline
+Ludzkie ucho nie potrafi odróżnić echo z oryginalnym dźwiękiem bezpośrednim, jeśli opóźnienie wynosi mniej niż 2 milisekundy a siła go nie przekracza 0.4 amplitudy dźwięku oryginalnego po sygnale lub też bezpośrednio przed nim.\newline\newline
+Dlatego czasem wykorzystują to zjawisko do ukrycia dodatkowej informacji. Ukrywanie danych odbywa się za pomocą sterowalnego filtru opóźniającego, którego zadaniem jest dodanie do oryginalnego sygnału jego kopii opóźnionego o zadany czas. \newline\newline
+
+  \begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{echo}
+	\caption{Przykładowy model systemu steganograficznego}
+\end{figure}
+
+Taką metodą można dodawać ukryte wiadomości w postaci binarnej, gdzie 0 oraz 1 występują echami o różnej amplitudzie lub opróżnieniu. Także stosowaną jest metoda dodawania pre-echa (sygnał echa jest dodawany przed właściwym sygnałem) jako wartości logicznej zera, oraz echa po sygnale jako wartości logicznej 1. 
+
+\subsubsection{Filtrowanie}
+
+Filtr cyfrowy - to jest system, który wykonuje operacje arytmetyczne na próbkach dyskretnego sygnału w celu zmniejszenia lub zwiększenia pewnych aspektów tego sygnału
+\newline\newline
+Filtracja - proces przetwarzania dokonywany na sygnale w dziedzinie czasu, powodujący zmiany w widmie sygnału oryginalnego. Zmiana polega na redukcji (odfiltrowaniu) pewnych niepożądanych składowych sygnału wejściowego - zatem filtr przepuszcza pewne częstotliwości, tłumiąc inne. Więc, filtry są istotnym narzędziem do wyczyszczenia sygnału od szumu. Niżej jest rzedstawiono schematycznie proces filtracji cyfrowej.\newline\newline
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{filter}
+	\caption{Schemat procesu filtracji cyfrowej}
+\end{figure}
+
+Filtr cyfrowy przetwarza ciąg wartości próbek dyskretnych i jest dedykowany pewnym systemem cyfrowym. Do obliczenia wartości próbek wyjściowych, czyli aby dokonać filtracji, filtr korzysta z dodawania, w podobny sposób jak to się dzieje w procesie uśredniania. 
+\newline\newline
+Filtr jako taki może być dolno- lub górnoprzepustowy, bądź pasmowy, a poza tym może mieć różne częstotliwości graniczne.
+\newline\newline
+Tradycyjne filtry liniowe są zwykle oparte na tłumienie.Wiele filtrów cyfrowych w oparte są na szybkiej transformacie Fouriera, pozwalając manipulować widmem przed konwersją zmodyfikowanego widma z powrotem na sygnał czasu z serii operacji odwrotnej FFT. Filtry te dają O (n log n) koszty obliczeniowe, natomiast inne filtry cyfrowe są zwykle O (n2 ).
+
+\subsubsection{Metoda najmniej znaczącego bitu (Least Significant Bit, LSB)}
+
+Metoda skupiając się na sposobie zakodowania plików źródłowych (.wav) sygnału. W tym sposobie analizowane są wartości ostatnich bitów, każdego z bajtów w pliku binarnym. Jest to powszechny sposób niskopoziomowego ukrycia wiadomości, stosowany w Steganografii.
+\newline \newline
+Pliki te we wglądzie hexdump wyglądają następująco:
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{hexdump.PNG}
+	\caption{Hexdump}
+\end{figure}
+
+Następnie z odczytano kolejno chunków danych (zaznaczone kolorem czerwonym), możemy sprawdzić wartości ostatnich bitów. Algorytmy stosowane w metodzie LSB podążają daną sekwencją kodując wiadomość z określonym cyklem np. co 2,3 chunk. Znajdując sekwencje poprzez Wczytanie tych ostatnich wartości jesteśmy wtedy wstanie odtworzyć ukrytą zawartość.
+
 
 \subsection{Cyfrowe przetwarzania sygnalow dzwiekowych}
 
