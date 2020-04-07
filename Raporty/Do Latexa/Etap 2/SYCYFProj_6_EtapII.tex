@@ -417,13 +417,234 @@ Głównym zadaniem tego projektu jest wykrycie tajemniczej wiadomości "z kosmos
 
 \subsection{Steganografia}
 
-\subsubsection{Struktura steganologii}
+Steganografia - jest to nauka zajmująca się ochroną cennej informacji poprzez jej ukrywanie w innej nie mającej wartości. Do ukrywania danych zaczęto wykorzystywać sygnał w postaci cyfrowej. \newline Jeśli adwersarz nie będzie świadomy faktu istnienia ukrytej informacji, lub nie będzie znał miejsca jej ukrycia, to nie będzie w stanie jej odczytać. \newline \newline 
+Dalej zapoznamy się z tą nauką trochę bliżej, oraz przeanalizujemy metody cyfrowego przetwarzania sygnałów pod kątem ich przydatności w steganografii komputerowej, wykorzystującej dźwięk jako kontener.
+
+\subsubsection{Steganologia i jej struktura}
+ \begin{itemize}
+	\item \textbf {Steganologia - z czego się składa?}\newline \newline
+Steganologia obejmuje dwie dziedziny – steganografię zajmującą się ochroną informacji oraz przeciwstawną do niej steganoanalizę. Celem tej nauki jest ochrona informacji.\newline \newline  Steganologia nie dokonuje przekształceń informacji lecz zajmuje się ukrywaniem jej istnienia, tak by osoby postronne nie były w stanie stwierdzić jej istnienia.\newline \newline  Obecnie najczęściej wykorzystywana jest postać cyfrowa sygnału dźwiękowego a on sam przekazywany i przetwarzany jest w tej właśnie postaci. Występuje tu zjawisko uniezależnienia danych od nośnika. Będziemy dalej opracowywać metody powiązane bezpośrednio z danymi cyfrowymi.
+
+	\item \textbf {Struktura steganologii}\newline \newline
+	
+	Jak było już omówione, steganologia obejmuje dwie dziedziny: steganografię i stegoanalizę.\newline \newline
+	\textbf{Steganografia} zajmuje się ukrywaniem cennej informacji w innych danych nie mających wartości, tak by osoba postronna nie była w stanie wykryć istnienia dodatkowych danych. Dokonuje się tego poprzez wprowadzenie do oryginalnego nośnika niewielkich zmian, których ludzkie zmysły nie są w stanie wykryć. Istotne jest również zachowanie poprawnej wartości wszystkich parametrów, które mogą zostać zbadane podczas analizy sygnału. \newline \newline
+	\textbf{Steganoanaliza} zajmuje się wykrywaniem ukrytych informacji oraz ich odczytywaniem lub niszczeniem. \newline Możliwe jest to dzięki wnikliwej analizie nośników i badaniu ich parametrów. W przypadku gdy znacznie odbiegają one od spodziewanej wartości sygnał poddawany jest szczegółowej analizie ze względu na duże prawdopodobieństwo istnienia w nim ukrytych danych. \newline
+ \end{itemize}
 
 \subsubsection{Model systemu steganograficznego}
 
-\subsubsection{Metody steganograficzne}
+Przykładowy model systemu steganograficznego zaprezentowany został na rysunku niżej.
 
-\subsection{Cyfrowe przetwarzania sygnalow dzwiekowych}
+  \begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{model}
+	\caption{Przykładowy model systemu steganograficznego}
+\end{figure}
+
+Przy komunikacji strony muszą uzgodnicz klucz steganograficzny, z którego będą korzystać, musi on zostać dostarczony w sposób bezpieczny, tak by przeciwnik nie miał możliwości zdobycia go. Gwarantuje on bezpieczeństwo systemu. Mając uzgodniony klucz nadawca dołącza za jego pomoca informację do kontenera. Często jest ona wcześniej szyfrowana. Niekiedy jednocześnie z informacją dołączany jest dodatkowy szum, który ma za zadanie dodatkowo utrudnić detekcję właściwej informacji. Przygotowany stegokontener jest przesyłany kanałem publicznym do odbiorcy, który za pomocą klucza odczytuje z niego dołączoną informację. Działanie takiego systemu polega na "grze" pomiędzy trzema graczami. Dwaj z nich porozumiewają się przesyłając kanałem publicznym informacje ukryte w innym nośniku. Trzeci z nich próbuje wykryć, która część przesyłanych danych zawiera utajnioną informację. Jeśli mu się to uda przystępuje do wyodrębniania wiadomości z nośnika. My w takim modelu występujemy tym trzecim graczem, który chcę zdobyć ukrytą informację.
+
+\subsection{Metody steganograficzne}
+
+Metod stegonograficznych istnieje dużo i w naszym czasie ilość ich rośnie. Ale chcemy na tym etapie skupić się na kilku z nich, a same: \newline
+\begin{itemize}
+\item dodawanie echa
+\item filtrowanie
+\item metoda najmniej znaczacego bitu
+\item modyfikacja szumu
+\item maskowanie rownoczesne i czasowe
+\item zmiana czestotliwosci probkowania 
+\item modulacja
+\item rozpraszanie widma
+\end{itemize}
+\subsubsection{Dodawanie echa}
+Echo - jest to odbicie dźwięku, które dociera do słuchacza z opóźnieniem po dźwięku bezpośredniego.\newline\newline
+Ludzkie ucho nie potrafi odróżnić echo z oryginalnym dźwiękiem bezpośrednim, jeśli opóźnienie wynosi mniej niż 2 milisekundy a siła go nie przekracza 0.4 amplitudy dźwięku oryginalnego po sygnale lub też bezpośrednio przed nim.\newline\newline
+Dlatego czasem wykorzystują to zjawisko do ukrycia dodatkowej informacji. Ukrywanie danych odbywa się za pomocą sterowalnego filtru opóźniającego, którego zadaniem jest dodanie do oryginalnego sygnału jego kopii opóźnionego o zadany czas. \newline\newline
+
+  \begin{figure}[h]
+	\centering
+	\includegraphics[width=0.4\textwidth]{echo}
+	\caption{Przykładowy model systemu steganograficznego}
+\end{figure}
+
+Taką metodą można dodawać ukryte wiadomości w postaci binarnej, gdzie 0 oraz 1 występują echami o różnej amplitudzie lub opróżnieniu. Także stosowaną jest metoda dodawania pre-echa (sygnał echa jest dodawany przed właściwym sygnałem) jako wartości logicznej zera, oraz echa po sygnale jako wartości logicznej 1. \newline\newline
+
+\subsubsection{Filtrowanie}
+
+Filtr cyfrowy - to jest system, który wykonuje operacje arytmetyczne na próbkach dyskretnego sygnału w celu zmniejszenia lub zwiększenia pewnych aspektów tego sygnału
+\newline\newline
+Filtracja - proces przetwarzania dokonywany na sygnale w dziedzinie czasu, powodujący zmiany w widmie sygnału oryginalnego. Zmiana polega na redukcji (odfiltrowaniu) pewnych niepożądanych składowych sygnału wejściowego - zatem filtr przepuszcza pewne częstotliwości, tłumiąc inne. Więc, filtry są istotnym narzędziem do wyczyszczenia sygnału od szumu. Niżej jest rzedstawiono schematycznie proces filtracji cyfrowej.\newline\newline
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.5\textwidth]{filter}
+	\caption{Schemat procesu filtracji cyfrowej}
+\end{figure}
+
+Filtr cyfrowy przetwarza ciąg wartości próbek dyskretnych i jest dedykowany pewnym systemem cyfrowym. Do obliczenia wartości próbek wyjściowych, czyli aby dokonać filtracji, filtr korzysta z dodawania, w podobny sposób jak to się dzieje w procesie uśredniania. 
+\newline\newline
+Filtr jako taki może być dolno- lub górnoprzepustowy, bądź pasmowy, a poza tym może mieć różne częstotliwości graniczne.
+\newline\newline
+Tradycyjne filtry liniowe są zwykle oparte na tłumienie.Wiele filtrów cyfrowych w oparte są na szybkiej transformacie Fouriera, pozwalając manipulować widmem przed konwersją zmodyfikowanego widma z powrotem na sygnał czasu z serii operacji odwrotnej FFT. Filtry te dają O (n log n) koszty obliczeniowe, natomiast inne filtry cyfrowe są zwykle O (n2 ).\newline\newline
+
+\subsubsection{Metoda najmniej znaczącego bitu (Least Significant Bit, LSB)}
+
+Metoda skupiając się na sposobie zakodowania plików źródłowych (.wav) sygnału. W tym sposobie analizowane są wartości ostatnich bitów, każdego z bajtów w pliku binarnym. Jest to powszechny sposób niskopoziomowego ukrycia wiadomości, stosowany w Steganografii.
+\newline \newline
+Pliki te we wglądzie hexdump wyglądają następująco:
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{hexdump.PNG}
+	\caption{Hexdump}
+\end{figure}
+
+Następnie z odczytano kolejno chunków danych (zaznaczone kolorem czerwonym), możemy sprawdzić wartości ostatnich bitów. Algorytmy stosowane w metodzie LSB podążają daną sekwencją kodując wiadomość z określonym cyklem np. co 2,3 chunk. Znajdując sekwencje poprzez Wczytanie tych ostatnich wartości jesteśmy wtedy wstanie odtworzyć ukrytą zawartość.\newline\newline
+
+\subsubsection{Modyfikacja szumu}
+
+Sygnał jaki otrzymaliśmy do zbadania przypomina biały szum.\newline \newline
+Kierując się tą informacją postanowiliśmy poszukać metod, które pozwoliłyby na redukcje szumu oraz ustabilizowanie ścieżki dźwiękowej – w efekcie – usłyszenie zaszyfrowanej wiadomości. 
+\newline \newline
+Jedną z metod przetwarzania sygnału jest właśnie modyfikacja szumu, czyli zastosowanie sygnału zwanego DITHER (do tej pory nie posiada on polskiej nazwy). Polega on na eliminacji szumu poprzez dodanie do sygnału… szumu. Ściślej mówiąc jest to losowy szum, dodawany do sygnału wejściowego. W efekcie otrzymujemy inny szum, słyszalny jako bardzo ciche syczenie.\newline \newline
+Pozornie nie jest to tylko usuwanie jednego szumu i zamienienie do drugim. Główną konsekwencją zastosowania sygnału DITHER jest lepsza słyszalność naszego pierwotnego sygnału. Dzieje się tak, ponieważ do szumu białego jesteśmy przyzwyczajeni, gdyż otacza nas on wszędzie na co dzień, więc jego słyszalność jest mniej zauważalna. Do tego należy wziąć pod uwagę, że uzyskany sygnał jest „odfiltrowywany” a poza tym stosuje się uśrednianie. 
+\newline \newline
+Działanie tej metody przedstawia rysunek: 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{dither}
+\end{figure}
+
+Pierwszy przebieg (a) to sygnał sinusoidalny bezpośrednio po kwantyzacji. Jeżeli jednak dodamy do sygnału oryginalnego dither i skwantujemy taki sygnał, otrzymamy takie „dziwadło”, jak na drugim rysunku (b). \newline \newline
+Fakt, że niewiele ma on wspólnego ani z sinusoidą, ani z prostokątem, ani z żadnym innym „normalnym” przebiegiem. Jeżeli jednak zastosujemy uśrednianie w czasie 32 okresów, otrzymamy nieco „pogryziony” przebieg, który jednakże już bardziej przypomina sinusoidę, a po uśrednieniu w czasie 960 okresów nasz sygnał wygląda niemalże jak idealna sinusoida.   
+
+
+\subsubsection{Maskowanie równoczesne i czasowe}
+
+\textbf{Maskowanie równoczesne} – efekt psychoakustyczny, które polega na zagłuszaniu dźwięków przez inne dźwięki. Zjawisko to polega na tym, że w zależności od natężeń i częstotliwości dźwięków, pewne tony stają się niesłyszalne, podczas gdy w sąsiedztwie występują inne dźwięki. Sygnał maskujący nazywamy maskerem. \newline \newline
+ Efekty maskowania służą do eliminowania szumów w sygnale. Gdy ustawimy odpowiedni próg maskowania, sygnał użyteczny może zamaskować szum.\newline \newline
+\textbf{Maskowanie nierównoczesne (czasowe)} – efekt psychoakustyczny, który polega na zagłuszaniu pewnych dźwięków przez inne dźwięki. \newline \newline
+W odróżnieniu od maskowania równoczesnego, dźwięk maskujący i dźwięk zamaskowany nie występują w tym samym czasie. Kiedy dźwięk cichszy występuje do kilkunastu sekund wcześniej niż dźwięk głośniejszy (do kilkunastu ms) mamy do czynienia z premaskowaniem (maskowanie wstecz). Zjawisko to zachodzi dzięki temu, że układ słuchowy szybciej przetwarza dźwięki głośniejsze, dzięki czemu może zamaskować wcześniejszy, cichszy dźwięk. Istnieje także maskowanie wprzód (postmaskowanie), które zależy od głośności i czasu trwania tonu maskującego. Postmarkowanie może występować, kiedy głośniejszy dźwięk występuje do kilkuset ms przed dźwiękiem cichszym.
+
+\subsubsection{Zmiana częstotliwości próbkowania}
+
+Podczas cyfrowego nagrywania sygnału dźwiękowego pochodzącego ze źródła analogowego częstotliwość próbkowania oznacza odstępy czasu między kolejnymi próbkami. Im większa jest jej wartość, tym mniej traci się z pierwotnego materiału audio. Aby dołączyć do sygnału dodatkowe dane wystarczy zmodyfikować sygnał rozpraszający zgodnie z przyjętymi założeniami a następnie przy jego pomocy spróbkować oryginalne nagranie. Taką techniką mógł zostać przetworzony badany przez nas sygnał. 
+
+\subsubsection{Modulacja}
+
+W procesie modulacji sygnał informacyjny zostaje skojarzony z pewnym parametrem sygnału dużej częstotliwości, tzw. fali nośną.\newline \newline
+Wyróżnianych jest wiele typów modulacji, my jednak skupiliśmy się na tych rodzajach, które mogłyby być użyte do zmodyfikowania badanego przez nas sygnału: 
+
+\begin{itemize}
+\item \textbf{Modulacja amplitudy:}\newline \newline Najprostszym przykładem modulacji amplitudy jest dwustanowa modulacja OOK (On-Off Keying), która polega na włączaniu i wyłączaniu sygnału nośnej. Jest to elementarna forma modulacji cyfrowej. W podstawowej postaci modulacji amplitudy obwiednia sygnału nośnej odzwierciedla zmiany sygnału informacyjnego. \newline \newline
+\item \textbf{Modulacja częstotliwości:} \newline \newline
+1)	W modulacji FM częstotliwość fali nośnej zmienia się pod wpływem sygnału informacyjnego. Proces demodulacji sygnału zmodulowanego częstotliwościowo wymaga zamiany jej na modulację amplitudy przy wykorzystaniu obwodu rezonansowego, który pozwala na uzależnienie sygnału wyjściowego od zmian częstotliwości sygnału zmodulowanego. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{modulacja1.jpg}
+\end{figure}
+
+2)	Przykładem częstotliwości jest również FSK (Frequency Shift Keying). Częstotliwość nośnej w tym wypadku przyjmuje zamiennie dwie wartości, które reprezentują stany logiczne 0 i 1. W ten sposób można zrealizować transmisję ciągu bitów informacyjnych. 
+\end{itemize}
+
+\subsubsection{Rozpraszanie widma}
+Istotą metod transmisji z rozpraszaniem widma jest nadawanie sygnału w szerokim paśmie częstotliwości, przy poziomie sygnału znacznie poniżej poziomu szumów. \newline \newline
+Połączenie tych dwóch właściwości sygnału pozwala osiągnąć założoną przepustowość kanału oraz jednocześnie powoduje, że sygnał taki trudno jest wykryć. 
+
+\subsection{Cyfrowe przetwarzania sygnałów dzwiekowych}
+
+W poprzednim podrozdziale zapoznaliśmy się z metodami \textbf{ukrywania} informacji w sygnalie cyfrowym, ale co zrobić, jeżeli powinniśmy dokonać odwrotnej operacji, nie znając dokładnie \textbf{jak} informacja została zakodowana?\newline \newline
+W takim przypadku zwracamy się do cyfrowego przetwarzania sygnałów (w naszym przypadku dzwiękowym) którego zadanie polega na analizie cyfrowego sygnału (w naszym przypadku analizie widmowej).\newline \newline
+Dziedzina cyfrowego przetwarzania sygnałów zawiera wiele dobrze opracowanych teoretycznie metod operujących na cyfrowej postaci sygnału dźwiękowego. W niniejszym podrozdziale został przedstawiony krótki przegląd najpopularniejszych metod przetwarzania sygnałów:
+
+\begin{itemize}
+	\item transformacja Fouriera
+	\item filtrowanie (zasady i struktura są takie same jako w steganografii)
+	\item transformacja falkowa
+	\item transformacja Gabora
+	\item analiza cepstralna
+\end{itemize}	
+
+\subsubsection{Transformacja Fouriera}
+
+\textbf{DFT (Dyskretna Transformata Fouriera)} - jedna z najbardziej popularnych i najbardziej wydajnych procedur spotykanych w dziedzinie cyfrowego przetwarzania sygnałów.\newline \newline
+ Pozwala ona analizować sygnały w sposób niemożliwy w przypadku sygnałów analogowych. Jest to procedura matematyczna, używana do wyznaczenia zawartości harmonicznej lub częstotliwościowej sygnału dyskretnego (zbiór wartości otrzymany w wyniku próbkowania w dziedzinie czasu sygnału ciągłego).\newline \newline
+ Podstawą obliczeń jest ciągłe przekształcenie Fouriera, zdefiniowane następująco:\newline
+	\includegraphics[width=0.3\textwidth]{fourier1}
+
+, gdzie x(n) jest dyskretnym ciągiem spróbkowanych wartości w dziedzinie czasu.\newline\newline
+Przy pomocy powyższego równania, funkcję x(t) ciągłą w dziedzinie czasu możemy przetworzyć na funkcję X(f) ciągłą w dziedzinie częstotliwości. Dzięki temu możemy przenieść nasz sygnał z dziedziny czasu do dziedziny częstotliwości, tj. wyznaczyć jego widmo w postaci ciągłej. Umożliwia nam to odczytanie zawartości częstotliwościowej naszego sygnału.\newline\newline
+Wraz z rozwojem technologii i nadejściem komputera, cały dorobek matematyczny w dziedzinie przetwarzania sygnałów, doprowadził do zdefiniowania DFT jako dyskretnego ciągu X(m) w dziedzinie częstotliwości, określonego równaniem:\newline
+\includegraphics[width=0.3\textwidth]{fourier2}
+
+, gdzie x(n) jest dyskretnym ciągiem spróbkowanych wartości w dziedzinie czasu. \newline\newline
+Wartość X(0) w dziedzinie częstotliwości określa składową stałą w widmie sygnału x(n).
+Z zależności Eulera wynika, że powyższe równanie jest równoważne z: \newline
+\includegraphics[width=0.6\textwidth]{fourier3}
+
+Powyższy wzór nazywany jest równaniem DFT, dla którego:
+
+\begin{itemize}
+\item X(m)  odpowiada m-tej składowej wyjściowej DFT, tj. X(0), X(l), X(2), X(3) itd.;
+\item m  indeksowi próbek wyjściowych DFT w dziedzinie częstotliwości, m =0, 1, 2, 3, ..., N-1 
+\item x(n)  ciągowi próbek wejściowych, x(0), x(l), x(2), x(3) itd.. 
+\item n  indeksowi próbek wejściowych w dziedzinie czasu, n= 0, 1,2,3,...,N-1 
+\item N  liczbie próbek ciągu wejściowego oraz liczbie punktów częstotliwości w ciągu wyjściowym DFT.
+\end{itemize}
+Każdy człon wyjściowy X(m) DFT stanowi sumę punkt po punkcie iloczynu ciągu wartości wejściowego sygnału i przebiegu zespolonego postaci cos(g) – jsin(g).\newline\newline
+Wartość X(0) w dziedzinie częstotliwości określa składową stałą w widmie sygnału x(n). Gdy X(0) nie jest równa zero, to znaczy że ciąg x(n) jest przesunięty o składową stałą i ma pewną niezerową wartość średnią.\newline\newline
+Jeśli DFT potraktujemy jako „czarną skrzynkę”, to miałaby ona następujące właściwości: sygnały wchodzące i wychodzące są sygnałami dyskretnymi oraz liczba próbek wchodzących do procesu jest równa liczbie próbek z niego wychodzących.\newline\newline
+
+\textbf{Przykład DFT}
+   \begin{figure}[ht]
+    	\centering
+    	\includegraphics[width=0.6\textwidth]{fourier4}
+   \end{figure}
+
+\subsubsection{Transformacja falkowa}
+Jest to metoda, która opiera się przekształceniach liniowych funkcji. Niestety z tej transformacji rzadko uzyskuje sie precyzyjny wynik informacji np. o częstotliwościach zawartych w sygnale („pomiędzy piątą a siódmą sekundą występowała
+częstotliwość 100Hz”). Dzieje się tak, ponieważ funkcja falkowa nie reprezentuje jednej częstotliwości lecz dany przedział częstotliwości, mowiący o chwili zmiany częstotliwości, a nie jej precyzyjnej wartości.
+\newline \newline
+\textbf{Definicja:}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{falkowa.PNG}
+	\caption{Definicja transformacji falkowej}
+\end{figure}
+
+Wynikiem transformacji falkowej są współczynniki, których wartości są zależna od parametrów a i b oraz sygnału s(t). Dla danych wartości a i b współczynnik jest miarą podobieństwa pomiędzy daną falką a wybranym fragmentem sygnału s(t).
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{wynik_falki.PNG}
+	\caption{Wynik Transformacji Falkowej}
+\end{figure}
+
+\subsubsection{Transformacja Gabora}
+Transformacja Gabora  jest szczególnym przypadkiem krótkotrwałej transformacji Fouriera. Służy do określania częstotliwości sinusoidalnej i zawartości fazowej lokalnych odcinków sygnału zmieniającego się w czasie. Funkcja do przekształcenia jest najpierw mnożona przez funkcję Gaussa, którą można uznać za funkcję okna, a wynikowa funkcja jest następnie przekształcana za pomocą transformaty Fouriera w celu uzyskania analizy czasowo-częstotliwościowej. Funkcja okna oznacza, że sygnał w pobliżu analizowanego czasu będzie miał większą wagę. 
+Uzyskanie pełnego zestawu współczynników Gabora możliwe jest przy użyciu wzoru:\newline
+\includegraphics[width=0.4\textwidth]{transG1.png}
+
+,gdzie: x(i) – analizowany sygnał, γ(i) – okno analizy, funkcja bi-ortogonalna do okna syntezy h(i), przy czym:\newline
+	\includegraphics[width=0.4\textwidth]{transG2.png}
+
+Analizowany sygnał x(i) może być przedstawiony jako suma:\newline
+	\includegraphics[width=0.4\textwidth]{transG3.png}
+
+Transformacja Gabora jest przydatnym narzędziem w procesie przetwarzania i analizy sygnałów fonicznych. Jednak jej zastosowanie jest ograniczone ze względu na trudności z obliczaniem współczynników Cm,n oraz stałą szerokość okna analizy ograniczającą jej precyzję w dziedzinie czasu i częstotliwości.
+\subsection{Analiza Cepstrum}
+Analiza cepstrum jest nieliniową techniką przetwarzania sygnału o różnorodnych zastosowaniach w obszarach takich jak przetwarzanie mowy i obrazu.
+Znane są dwie definicje cepstrum widma mocy C(τ):\newline
+	\includegraphics[width=0.28\textwidth]{Acepstrum1.png}
+
+We wzorach SAA(f) reprezentuje dwuwstęgowe widmo mocy sygnału f(t), czyli SAA(f)=|F(f(t))|2. Porównując obie definicje można zauważyć, że jedna z nich wykorzystuje transformację Fouriera a druga transformację odwrotną. Jednak w wyniku obydwu przekształceń otrzymujemy reprezentację cepstralną przedstawiającą sygnał w dziedzinie czasu τ. Jest to dziedzina odpowiadająca odwrotności częstotliwości.
+W przypadku sygnału cyfrowego cepstrum może być obliczone jako zestaw współczynników Cr na podstawie równania: \newline
+	\includegraphics[width=0.3 \textwidth]{Acepstrum2.png}
+gdzie: r - rząd współczynnika cepstralnego, lpr – liczba próbek w ramce, i – numer kolejnej próbki widma, Ai – amplituda i-tej próbki, fp – częstotliwość próbkowania, fc – maksymalna częstotliwość uwzględniona w analizie cepstralnej.
+
 
 \subsection{Możliwość wykorzystania podanych metod według zadania projektowego}
 

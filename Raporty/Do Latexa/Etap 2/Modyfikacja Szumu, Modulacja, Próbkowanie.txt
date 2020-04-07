@@ -4,7 +4,7 @@ Sygnał jaki otrzymaliśmy do zbadania przypomina biały szum. Kierując się t�
 https://livesound.pl/tutoriale/4960-dither.-walka-z-szumem-jego-wlasna-bronia
 
 MODULACJA 
-W procesie modulacji sygnał informacyjny zostaje skojarzony z pewnym parametrem sygnału dużej częstotliwości, tzw. fali nośną. Wyróżnianych jest wiele typów modoluacji, my jednak skupiliśmy się na tych rodzajach, które mogłyby być użyte do zmodyfikowania badanego przez nas sygnału: 
+W procesie modulacji sygnał informacyjny zostaje skojarzony z pewnym parametrem sygnału dużej częstotliwości, tzw. fali nośną. Wyróżnianych jest wiele typów modulacji, my jednak skupiliśmy się na tych rodzajach, które mogłyby być użyte do zmodyfikowania badanego przez nas sygnału: 
 Modulacja amplitudy: Najprostszym przykładem modulacji amplitudy jest dwustanowa modulacja OOK (On-Off Keying), która polega na włączaniu i wyłączaniu sygnału nośnej. Jest to elementarna forma modulacji cyfrowej. W podstawowej postaci modulacji amplitudy obwiednia sygnału nośnej odzwierciedla zmiany sygnału informacyjnego. 
 Modulacja częstotliwości: 
 1)	W modulacji FM częstotliwość fali nośnej zmienia się pod wpływem sygnału informacyjnego. Proces demodulacji sygnału zmodulowanego częstotliwościowo wymaga zamiany jej na modulację amplitudy przy wykorzystaniu obwodu rezonansowego, który pozwala na uzależnienie sygnału wyjściowego od zmian częstotliwości sygnału zmodulowanego. (modulacja.jpg)
