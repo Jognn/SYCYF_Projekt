@@ -455,6 +455,7 @@ Metod stegonograficznych istnieje dużo i w naszym czasie ilość ich rośnie. A
 \item maskowanie rownoczesne
 \item zmiana czestotliwosci probkowania 
 \item modulacja
+\item rozpraszanie widma
 \end{itemize}
 \subsubsection{Dodawanie echa}
 Echo - jest to odbicie dźwięku, które dociera do słuchacza z opóźnieniem po dźwięku bezpośredniego.\newline\newline
@@ -463,11 +464,11 @@ Dlatego czasem wykorzystują to zjawisko do ukrycia dodatkowej informacji. Ukryw
 
   \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.5\textwidth]{echo}
+	\includegraphics[width=0.4\textwidth]{echo}
 	\caption{Przykładowy model systemu steganograficznego}
 \end{figure}
 
-Taką metodą można dodawać ukryte wiadomości w postaci binarnej, gdzie 0 oraz 1 występują echami o różnej amplitudzie lub opróżnieniu. Także stosowaną jest metoda dodawania pre-echa (sygnał echa jest dodawany przed właściwym sygnałem) jako wartości logicznej zera, oraz echa po sygnale jako wartości logicznej 1. 
+Taką metodą można dodawać ukryte wiadomości w postaci binarnej, gdzie 0 oraz 1 występują echami o różnej amplitudzie lub opróżnieniu. Także stosowaną jest metoda dodawania pre-echa (sygnał echa jest dodawany przed właściwym sygnałem) jako wartości logicznej zera, oraz echa po sygnale jako wartości logicznej 1. \newline\newline
 
 \subsubsection{Filtrowanie}
 
@@ -475,7 +476,7 @@ Filtr cyfrowy - to jest system, który wykonuje operacje arytmetyczne na próbka
 \newline\newline
 Filtracja - proces przetwarzania dokonywany na sygnale w dziedzinie czasu, powodujący zmiany w widmie sygnału oryginalnego. Zmiana polega na redukcji (odfiltrowaniu) pewnych niepożądanych składowych sygnału wejściowego - zatem filtr przepuszcza pewne częstotliwości, tłumiąc inne. Więc, filtry są istotnym narzędziem do wyczyszczenia sygnału od szumu. Niżej jest rzedstawiono schematycznie proces filtracji cyfrowej.\newline\newline
 
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.5\textwidth]{filter}
 	\caption{Schemat procesu filtracji cyfrowej}
@@ -485,7 +486,7 @@ Filtr cyfrowy przetwarza ciąg wartości próbek dyskretnych i jest dedykowany p
 \newline\newline
 Filtr jako taki może być dolno- lub górnoprzepustowy, bądź pasmowy, a poza tym może mieć różne częstotliwości graniczne.
 \newline\newline
-Tradycyjne filtry liniowe są zwykle oparte na tłumienie.Wiele filtrów cyfrowych w oparte są na szybkiej transformacie Fouriera, pozwalając manipulować widmem przed konwersją zmodyfikowanego widma z powrotem na sygnał czasu z serii operacji odwrotnej FFT. Filtry te dają O (n log n) koszty obliczeniowe, natomiast inne filtry cyfrowe są zwykle O (n2 ).
+Tradycyjne filtry liniowe są zwykle oparte na tłumienie.Wiele filtrów cyfrowych w oparte są na szybkiej transformacie Fouriera, pozwalając manipulować widmem przed konwersją zmodyfikowanego widma z powrotem na sygnał czasu z serii operacji odwrotnej FFT. Filtry te dają O (n log n) koszty obliczeniowe, natomiast inne filtry cyfrowe są zwykle O (n2 ).\newline\newline
 
 \subsubsection{Metoda najmniej znaczącego bitu (Least Significant Bit, LSB)}
 
@@ -499,9 +500,59 @@ Pliki te we wglądzie hexdump wyglądają następująco:
 	\caption{Hexdump}
 \end{figure}
 
-Następnie z odczytano kolejno chunków danych (zaznaczone kolorem czerwonym), możemy sprawdzić wartości ostatnich bitów. Algorytmy stosowane w metodzie LSB podążają daną sekwencją kodując wiadomość z określonym cyklem np. co 2,3 chunk. Znajdując sekwencje poprzez Wczytanie tych ostatnich wartości jesteśmy wtedy wstanie odtworzyć ukrytą zawartość.
+Następnie z odczytano kolejno chunków danych (zaznaczone kolorem czerwonym), możemy sprawdzić wartości ostatnich bitów. Algorytmy stosowane w metodzie LSB podążają daną sekwencją kodując wiadomość z określonym cyklem np. co 2,3 chunk. Znajdując sekwencje poprzez Wczytanie tych ostatnich wartości jesteśmy wtedy wstanie odtworzyć ukrytą zawartość.\newline\newline
+
+\subsubsection{Modyfikacja szumu}
+
+Sygnał jaki otrzymaliśmy do zbadania przypomina biały szum.\newline \newline
+Kierując się tą informacją postanowiliśmy poszukać metod, które pozwoliłyby na redukcje szumu oraz ustabilizowanie ścieżki dźwiękowej – w efekcie – usłyszenie zaszyfrowanej wiadomości. 
+\newline \newline
+Jedną z metod przetwarzania sygnału jest właśnie modyfikacja szumu, czyli zastosowanie sygnału zwanego DITHER (do tej pory nie posiada on polskiej nazwy). Polega on na eliminacji szumu poprzez dodanie do sygnału… szumu. Ściślej mówiąc jest to losowy szum, dodawany do sygnału wejściowego. W efekcie otrzymujemy inny szum, słyszalny jako bardzo ciche syczenie.\newline \newline
+Pozornie nie jest to tylko usuwanie jednego szumu i zamienienie do drugim. Główną konsekwencją zastosowania sygnału DITHER jest lepsza słyszalność naszego pierwotnego sygnału. Dzieje się tak, ponieważ do szumu białego jesteśmy przyzwyczajeni, gdyż otacza nas on wszędzie na co dzień, więc jego słyszalność jest mniej zauważalna. Do tego należy wziąć pod uwagę, że uzyskany sygnał jest „odfiltrowywany” a poza tym stosuje się uśrednianie. 
+\newline \newline
+Działanie tej metody przedstawia rysunek: 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{dither}
+\end{figure}
+
+Pierwszy przebieg (a) to sygnał sinusoidalny bezpośrednio po kwantyzacji. Jeżeli jednak dodamy do sygnału oryginalnego dither i skwantujemy taki sygnał, otrzymamy takie „dziwadło”, jak na drugim rysunku (b). \newline \newline
+Fakt, że niewiele ma on wspólnego ani z sinusoidą, ani z prostokątem, ani z żadnym innym „normalnym” przebiegiem. Jeżeli jednak zastosujemy uśrednianie w czasie 32 okresów, otrzymamy nieco „pogryziony” przebieg, który jednakże już bardziej przypomina sinusoidę, a po uśrednieniu w czasie 960 okresów nasz sygnał wygląda niemalże jak idealna sinusoida.   
 
 
+\subsubsection{Maskowanie równoczesne}
+
+Maskowanie równoczesne – efekt psychoakustyczny, które polega na zagłuszaniu dźwięków przez inne dźwięki. Zjawisko to polega na tym, że w zależności od natężeń i częstotliwości dźwięków, pewne tony stają się niesłyszalne, podczas gdy w sąsiedztwie występują inne dźwięki. Sygnał maskujący nazywamy maskerem. \newline \newline
+ Efekty maskowania służą do eliminowania szumów w sygnale. Gdy ustawimy odpowiedni próg maskowania, sygnał użyteczny może zamaskować szum.\newline \newline
+Maskowanie nierównoczesne (czasowe) – efekt psychoakustyczny, który polega na zagłuszaniu pewnych dźwięków przez inne dźwięki. \newline \newline
+W odróżnieniu od maskowania równoczesnego, dźwięk maskujący i dźwięk zamaskowany nie występują w tym samym czasie. Kiedy dźwięk cichszy występuje do kilkunastu sekund wcześniej niż dźwięk głośniejszy (do kilkunastu ms) mamy do czynienia z premaskowaniem (maskowanie wstecz). Zjawisko to zachodzi dzięki temu, że układ słuchowy szybciej przetwarza dźwięki głośniejsze, dzięki czemu może zamaskować wcześniejszy, cichszy dźwięk. Istnieje także maskowanie wprzód (postmaskowanie), które zależy od głośności i czasu trwania tonu maskującego. Postmarkowanie może występować, kiedy głośniejszy dźwięk występuje do kilkuset ms przed dźwiękiem cichszym.
+
+\subsubsection{Zmiana częstotliwości próbkowania}
+
+Podczas cyfrowego nagrywania sygnału dźwiękowego pochodzącego ze źródła analogowego częstotliwość próbkowania oznacza odstępy czasu między kolejnymi próbkami. Im większa jest jej wartość, tym mniej traci się z pierwotnego materiału audio. Aby dołączyć do sygnału dodatkowe dane wystarczy zmodyfikować sygnał rozpraszający zgodnie z przyjętymi założeniami a następnie przy jego pomocy spróbkować oryginalne nagranie. Taką techniką mógł zostać przetworzony badany przez nas sygnał. 
+
+\subsubsection{Modulacja}
+
+W procesie modulacji sygnał informacyjny zostaje skojarzony z pewnym parametrem sygnału dużej częstotliwości, tzw. fali nośną.\newline \newline
+Wyróżnianych jest wiele typów modulacji, my jednak skupiliśmy się na tych rodzajach, które mogłyby być użyte do zmodyfikowania badanego przez nas sygnału: 
+
+\begin{itemize}
+\item \textbf{Modulacja amplitudy:}\newline \newline Najprostszym przykładem modulacji amplitudy jest dwustanowa modulacja OOK (On-Off Keying), która polega na włączaniu i wyłączaniu sygnału nośnej. Jest to elementarna forma modulacji cyfrowej. W podstawowej postaci modulacji amplitudy obwiednia sygnału nośnej odzwierciedla zmiany sygnału informacyjnego. \newline \newline
+\item \textbf{Modulacja częstotliwości:} \newline \newline
+1)	W modulacji FM częstotliwość fali nośnej zmienia się pod wpływem sygnału informacyjnego. Proces demodulacji sygnału zmodulowanego częstotliwościowo wymaga zamiany jej na modulację amplitudy przy wykorzystaniu obwodu rezonansowego, który pozwala na uzależnienie sygnału wyjściowego od zmian częstotliwości sygnału zmodulowanego. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{modulacja1.jpg}
+\end{figure}
+
+2)	Przykładem częstotliwości jest również FSK (Frequency Shift Keying). Częstotliwość nośnej w tym wypadku przyjmuje zamiennie dwie wartości, które reprezentują stany logiczne 0 i 1. W ten sposób można zrealizować transmisję ciągu bitów informacyjnych. 
+\end{itemize}
+
+\subsubsection{Rozpraszanie widma}
+Istotą metod transmisji z rozpraszaniem widma jest nadawanie sygnału w szerokim paśmie częstotliwości, przy poziomie sygnału znacznie poniżej poziomu szumów. \newline \newline
+Połączenie tych dwóch właściwości sygnału pozwala osiągnąć założoną przepustowość kanału oraz jednocześnie powoduje, że sygnał taki trudno jest wykryć. 
 \subsection{Cyfrowe przetwarzania sygnalow dzwiekowych}
 
 \subsection{Możliwość wykorzystania podanych metod według zadania projektowego}
