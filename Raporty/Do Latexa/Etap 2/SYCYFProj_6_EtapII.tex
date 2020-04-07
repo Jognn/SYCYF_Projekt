@@ -409,6 +409,7 @@ Rozdział ten będzie opisywał zadania zrealizowane w ramach Etapu \texttt{II}.
 	\item metody cyfrowego przetwarzania sygnalow stosowane w dzwieku
 	\item analiza wybranych metod cyfrowego przetwarzania sygnałow w steganografii sygnałow dzwiekowych
 	\item narzędzia, oprogramowanie wykorzystywane przy analizie sygnałów cyfrowych
+	\item ogólne wiadomości o próbkowaniu
 	\item wnioski
 	\end{itemize} 
 \subsection{Zadanie projektowe}
@@ -608,20 +609,13 @@ Jeśli DFT potraktujemy jako „czarną skrzynkę”, to miałaby ona następuj�
 Jest to metoda, która opiera się przekształceniach liniowych funkcji. Niestety z tej transformacji rzadko uzyskuje sie precyzyjny wynik informacji np. o częstotliwościach zawartych w sygnale („pomiędzy piątą a siódmą sekundą występowała
 częstotliwość 100Hz”). Dzieje się tak, ponieważ funkcja falkowa nie reprezentuje jednej częstotliwości lecz dany przedział częstotliwości, mowiący o chwili zmiany częstotliwości, a nie jej precyzyjnej wartości.
 \newline \newline
-\textbf{Definicja:}
-\begin{figure}[h]
-	\centering
+\textbf{Definicja:}\newline
+
 	\includegraphics[width=0.8\textwidth]{falkowa.PNG}
-	\caption{Definicja transformacji falkowej}
-\end{figure}
 
-Wynikiem transformacji falkowej są współczynniki, których wartości są zależna od parametrów a i b oraz sygnału s(t). Dla danych wartości a i b współczynnik jest miarą podobieństwa pomiędzy daną falką a wybranym fragmentem sygnału s(t).
+Wynikiem transformacji falkowej są współczynniki, których wartości są zależna od parametrów a i b oraz sygnału s(t). Dla danych wartości a i b współczynnik jest miarą podobieństwa pomiędzy daną falką a wybranym fragmentem sygnału s(t).\newline
 
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.8\textwidth]{wynik_falki.PNG}
-	\caption{Wynik Transformacji Falkowej}
-\end{figure}
+	\includegraphics[width=0.6\textwidth]{wynik_falki.PNG}
 
 \subsubsection{Transformacja Gabora}
 Transformacja Gabora  jest szczególnym przypadkiem krótkotrwałej transformacji Fouriera. Służy do określania częstotliwości sinusoidalnej i zawartości fazowej lokalnych odcinków sygnału zmieniającego się w czasie. Funkcja do przekształcenia jest najpierw mnożona przez funkcję Gaussa, którą można uznać za funkcję okna, a wynikowa funkcja jest następnie przekształcana za pomocą transformaty Fouriera w celu uzyskania analizy czasowo-częstotliwościowej. Funkcja okna oznacza, że sygnał w pobliżu analizowanego czasu będzie miał większą wagę. 
@@ -632,7 +626,7 @@ Uzyskanie pełnego zestawu współczynników Gabora możliwe jest przy użyciu w
 	\includegraphics[width=0.4\textwidth]{transG2.png}
 
 Analizowany sygnał x(i) może być przedstawiony jako suma:\newline
-	\includegraphics[width=0.4\textwidth]{transG3.png}
+	\includegraphics[width=0.3\textwidth]{transG3.png}
 
 Transformacja Gabora jest przydatnym narzędziem w procesie przetwarzania i analizy sygnałów fonicznych. Jednak jej zastosowanie jest ograniczone ze względu na trudności z obliczaniem współczynników Cm,n oraz stałą szerokość okna analizy ograniczającą jej precyzję w dziedzinie czasu i częstotliwości.
 \subsection{Analiza Cepstrum}
@@ -645,10 +639,59 @@ W przypadku sygnału cyfrowego cepstrum może być obliczone jako zestaw współ
 	\includegraphics[width=0.3 \textwidth]{Acepstrum2.png}
 gdzie: r - rząd współczynnika cepstralnego, lpr – liczba próbek w ramce, i – numer kolejnej próbki widma, Ai – amplituda i-tej próbki, fp – częstotliwość próbkowania, fc – maksymalna częstotliwość uwzględniona w analizie cepstralnej.
 
+\subsection{Ogólne wiadomości o próbkowaniu (kwantyzacji)}
+
+Kwantyzacja – proces przetwarzania sygnału, który polega na przyporządkowaniu ciągłemu sygnałowi konkretnej, dyskretnej wartości na zadanym przedziale. \newline\newline
+Maksymalna wartość sygnału dzielona jest na szereg mniejszych przedziałów. Gdy mają one taką samą wielkość, mówimy o kwantyzacji liniowej (dla różnych przedziałów nieliniowa).\newline 
+Każdemu przedziałowi przyporządkowana jest konkretna wartość, którą może przyjąć sygnał. W wyniku tego procesu przekazywany sygnał nie jest idealnym odwzorowaniem sygnału wejściowego, w związku z czym pojawia się błąd zwany szumem kwantyzacji. \newline\newline 
+Dla coraz większych przedziałów zmniejsza się dokładność kwantyzacji, a zwiększa się szum. \newline\newline
+W analogowo – cyfrowym przetwarzaniu sygnałów dokładność kwantyzacji liniowej jest określana przez liczbę bitów użytych do zapisu. \newline\newline
+Liczba poziomów kwantyzacji wyraża się wzorem 2n, gdzie n oznacza liczbę wykorzystanych bitów. Im więcej bitów, a co z tego wynika poziomów kwantyzacji, tym dokładniejsze jest odwzorowanie sygnału. \newline\newline
+Do pomiaru dokładności odwzorowania sygnału używa się miary SNR, która określa stosunek mocy sygnału użytecznego do mocy szumu (wyrażany w dB). W przypadku kwantyzacji liniowej, na każdy bit przypada ok. 6dB zakresu dynamiki. Oznacza to, że dodanie 1 bitu (czyli zwiększenie poziomów kwantyzacji 2-krotnie),  podnosi wartość parametru SNR o 6 dB. W przyjętym obecnie standardzie 16-bitowym Współczynnik ten wynosi ok. 96dB. \newline
+
+\begin{figure}[h]
+	\centering 
+	\includegraphics[width=0.4\textwidth]{kwantyzacja}
+	\caption{Przykład kwantzyacji szgnału}	
+\end{figure}
+
+\subsection{Narzędzia do analizy sygnałów cyfrowych}
+
+Do analizy rozpatrywanego sygnalu cyfrowego powinniśmy byli dobrać pewne narzędzia. Po zapoznaniu się z metodykami przetwarzania sygnalów cyfrowych zastanowiliśmy, że będziemy korzystać się z:
+
+\begin{itemize}
+	\item \textbf{PROGRAM AUDACITY} \newline\newline
+	Jest to darmowy program do nagrywania, analizy i nieliniowej edycji dźwięku. Istotne jest to, że również zawiera funkcji filtrowania górnego oraz dolnego, eksportowania ta importowania plików z zawartością poszczególnych próbek sygnału oraz analizę widma.\newline
+	
+	\item \textbf{JĘZYK PROGRAMOWANIA PYTHON} \newline\newline
+	Dlaczego Python jest najlepszym możliwym jęyzkiem programowania w celu wykonywania transformat?\newline
+	\begin{itemize}
+	\item Jest to język interpretowany, tzn. w prosty sposób możemy powiedzieć, że mamy do czynienia z powłoką i interpreterem, który czyta wpisany przez nas kod linijka po linijce podejmując konkretne działania.\newline
+	\item Python to język, który wciąż się rozwija, cały czas pojawiają się nowe moduły, których użycie sprowadza się do szybkiego spojrzenia na dokumentację.\newline\newline
+	Do przydatnych modułów i bibliotek należą:\newline\newline
+	\textbf{NumPy} - moduł Pythona, który zawiera wszystkie niezbędne klasy i funkcje potrzebne do reprezentacji naszych wektorów. Mamy możliwość operacji na tablicach, macierzach itd. mając przy tym dostęp do wszystkich niezbędnych funkcji, jak odwracanie, transpozycja itp.\newline\newline
+	\textbf{Matplotlbi} - moduł służący do tworzenia wszelkiego rodzaju wykresów i wizualizacji. Umożliwia kreślenie wykresów 2D oraz 3D, histogramów i wielu więcej diagramów.\newline\newline
+	\textbf{FFT} – Fast Fourier Transform - daje nam informację o częstotliwościach powiązanych z naszym sygnałem. Pokrótce, transformata „przekształca” jedną funkcję w drugiej, jednak zmieniana jest dziedzina – z dziedziny czasu przechodzimy do dziedziny częstotliwości. Jest bardzo wydajna.\newline\newline
+	\textbf{Splot} - podstawowy proces jeśli chodzi o filtrację sygnałów audio czy obrazów. Zaletą FFT jest fakt, iż operację splotu w dziedzinie czasu możemy przedstawić jako mnożenie transformat sygnałów w dziedzinie częstotliwości.\newline\newline
+	\textbf{Okna} - Okna często używane są razem z FFT. Stosuje się je do prezentacji wyników FFT.\newline\newline
+	\end{itemize}
+	
+	\item \textbf{MATLAB} \newline\newline
+	Matlab dzięki aplikacji „Signal Processing Toolbox” zapewnie funkcje do wstępnej analizy i przetwarzania sygnałów. Zawiera między innymi takie opcje jak wygładzanie sygnałów, korzystanie z licznych filtrów, zmiana częstotliwości próbkowania sygnału. \newline
+	Pozwala na wyświetlenie sygnału w dziedzinie czasu, widma oraz spektogramu.\newline
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\textwidth]{matlab1.PNG}
+		\caption{Sygnał w dziedzinie czasu, widmo oraz spektogram}
+	\end{figure}
+	
+\end{itemize}
 
 \subsection{Możliwość wykorzystania podanych metod według zadania projektowego}
 
-\subsection{Narzędzia do analizy sygnałów cyfrowych}
+Żeby zastanowić, z których metod będziemy korzystać się
+
 
 \subsection{Wnioski}
 
