@@ -26,3 +26,4 @@ Wprowadzenie zapisów (symboli) matematycznych jest bardzo trudne;
 Podczas przesyłania pliku zdarza się jego deformacja.
 \end{itemize}
 
+
