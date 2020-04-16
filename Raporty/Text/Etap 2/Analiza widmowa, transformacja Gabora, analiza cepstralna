@@ -1,7 +1,9 @@
 \subsection{Analiza widmowa}
 Teoria Fouriera mówi nam, że każdy sygnał elektryczny opisany w dziedzinie czasu może zostać opisany za pomocą jednego lub więcej sygnałów sinusoidalnych z odpowiednią amplitudą, fazą i częstotliwością. Oznacza to, że każdy sygnał przedstawiony w dziedzinie czasu możemy przedstawić również w dziedzinie częstotliwości. Pomiary w funkcji częstotliwości mówią nam ile energii znajduje się na poszczególnych częstotliwościach. Z odpowiednim filtrowaniem przebieg może zostać rozłożony na osobne przebiegi sinusoidalne lub składowe widmowe które następnie możemy oddzielnie analizować. Niektóre pomiary wymagają posiadania kompletnej informacji o częstotliwości, fazie i amplitudzie sygnału. Jednak dla sporej grupy pomiarów nie musimy posiadać informacji o przesunięciu fazowym składowych sinusów. Takiego typu pomiary nazywamy analizą widmową.
+
 %https://pl.wikipedia.org/wiki/Analiza_widmowa
 %https://www.amt.pl/pl/faq/cty/analiza-widmowa
+
 \subsection{Transformacja Gabora}
 Transformacja Gabora  jest szczególnym przypadkiem krótkotrwałej transformacji Fouriera. Służy do określania częstotliwości sinusoidalnej i zawartości fazowej lokalnych odcinków sygnału zmieniającego się w czasie. Funkcja do przekształcenia jest najpierw mnożona przez funkcję Gaussa, którą można uznać za funkcję okna, a wynikowa funkcja jest następnie przekształcana za pomocą transformaty Fouriera w celu uzyskania analizy czasowo-częstotliwościowej. Funkcja okna oznacza, że sygnał w pobliżu analizowanego czasu będzie miał większą wagę. 
 Uzyskanie pełnego zestawu współczynników Gabora możliwe jest przy użyciu wzoru:
@@ -23,8 +25,10 @@ Analizowany sygnał x(i) może być przedstawiony jako suma:
      	\caption{x(i)}
     \end{figure}
 Transformacja Gabora jest przydatnym narzędziem w procesie przetwarzania i analizy sygnałów fonicznych. Jednak jej zastosowanie jest ograniczone ze względu na trudności z obliczaniem współczynników Cm,n oraz stałą szerokość okna analizy ograniczającą jej precyzję w dziedzinie czasu i częstotliwości.
+
 %https://en.wikipedia.org/wiki/Gabor_transform
 %http://bc.pollub.pl/Content/659/PDF/D-249%20Kozie%C5%82%20Grzegorz.pdf?fbclid=IwAR0XoF6klE92YCXt3DSkiF-6OUbWk7NrBLBOJJnCydRa_hN_1P2jxCQyJpM
+
 \subsection{Analiza Cepstrum}
 Analiza cepstrum jest nieliniową techniką przetwarzania sygnału o różnorodnych zastosowaniach w obszarach takich jak przetwarzanie mowy i obrazu.
 Znane są dwie definicje cepstrum widma mocy C(τ):
