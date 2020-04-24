@@ -1,0 +1,21 @@
+Scenariusz przeprowadzenia testu poprawnego działania naszego programu:
+
+1)	W programie Audiacity tworzymy sygnał testujący. Początkowo tworzymy ścieżkę mono, na której generujemy ton, który nadaje sygnał na jednej, ustalonej przez nas częstotliwości. Plik eksportujemy jako plik 
+o rozszerzeniu .wav.
+2)	Przygotowany wcześniej plik dźwiękowy wprowadzamy do naszego programu. Jeżeli wynikiem będzie ustalona przez nas wcześniej częstotliwość, przechodzimy do kolejnego testu.
+3)	W tym samym programie generujmy ton o innej częstotliwości, najlepiej takiej, aby znacząco różniła się od pierwszego pliku. 
+4)	Powtarzamy procedurę z punktu 2).
+5)	Kiedy testy pojedynczych częstotliwości udadzą się, możemy skomplikować nasz plik. W wyżej wymienionym programie generujemy ścieżkę o dowolnej częstotliwości. Następnie tworzymy kolejną ścieżkę, koniecznie o takiej samej częstotliwości próbkowania co w ścieżce 1. i trwa tyle samo czasu. Tak utworzony plik eksportujemy jak plik .wav. W trakcie eksportu, ścieżki połączą się w jeden plik. 
+6)	Powtarzamy procedurę z punktu 3).
+7)	Możemy przygotowywać pliki o dowolnej liczbie ścieżek, a co za tym idzie częstotliwości (wg procedury z punktu 5)), a następnie testować (wg punktu 2)).
+8)	Musimy pamiętać, że program może odczytywać częstotliwości z pewnym błędem.
+
+Przygotowane przez nas pliki do testowania:
+
+I.	2000Hz.wav – sygnał sinusoidalny o amplitudzie 1 i częstotliwości 2000Hz. Częstotliwość    próbkowania -  44100Hz.
+II.	300Hz – sygnał sinusoidalny o amplitudzie 1 i częstotliwości 300Hz. Częstotliwość    próbkowania -  44100Hz.
+III.	10000Hz.wav – sygnał sinusoidalny o amplitudzie 1 i częstotliwości 10000Hz. Częstotliwość    próbkowania -  44100Hz.
+IV.	1800_5000Hz.wav – ścieżka 1.: sygnał sinusoidalny o amplitudzie 1 i częstotliwości 1800Hz; ścieżka 2.: sygnał sinusoidalny o amplitudzie 1 i częstotliwości 5000Hz; Częstotliwość    próbkowania obu ścieżek -  44100Hz.
+V.	1800_5000Hz.wav – ścieżka 1.: sygnał sinusoidalny o amplitudzie 1 i częstotliwości 1800Hz; ścieżka 2.: sygnał sinusoidalny o amplitudzie 1 i częstotliwości 5000Hz; Częstotliwość    próbkowania dla obu ścieżek -  44100Hz.
+VI.	1000_7000¬_17000Hz.wav – ścieżka 1.: sygnał sinusoidalny o amplitudzie 1 i częstotliwości 1000Hz; ścieżka 2.: sygnał sinusoidalny o amplitudzie 1 i częstotliwości 7000Hz; ścieżka 3.: sygnał sinusoidalny o amplitudzie 1 i częstotliwości 17000Hz; Częstotliwość    próbkowania dla wszystkich ścieżek -  44100Hz.
+
