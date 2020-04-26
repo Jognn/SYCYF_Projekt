@@ -1,0 +1,8 @@
+Aby osiągnąć cel projektu, czyli odczytać zakres fal, na których odbywa się potencjalna transmisja musimy:
+1.	Wczytać plik zawierający interesujący nas sygnał.
+2.	Przeprowadzić szybką transformację Fouriera.
+ FFT jest to DFT(Dyskretna transformata Fouriera – transformata Fouriera wyznaczona dla sygnału próbkowanego, a więc dyskretnego) ze zmniejszoną liczbą niezbędnych operacji arytmetycznych. Celem FFT jest zmniejszenie długiego algorytmu obliczeniowego przez jego podział na krótsze i prostsze obliczenia DFT i skrócenie czasu obliczeń.
+Celem tego kroku jest rozkład funkcji okresowej na szereg funkcji okresowych tak, że uzyskana transformata podaje w jaki sposób poszczególne częstotliwości składają się na pierwotną funkcję.
+3.	Odszumić sygnał, czyli zignorować wszystkie zbędne nam częstotliwości. 
+Można tego dokonać na kilka sposobów, w takich programach jak Audacity wystarczy zastosować odpowiedni filtr. Kolejną możliwością jest wykorzystanie strategii Donoho-Johnsona, która wykorzystuje transformację falkową z pewną modyfikacją, kótra polega na korekcji każdego ze współczynników falkowych za pomocą nieliniowej funkcji, której wartość zależy od wartości współczynnika falkowego.
+4.	Odczytać oraz wyświetlić wartości.
