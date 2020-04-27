@@ -1,0 +1,8 @@
+[Mapa mysli] [...] w celu zorientowania się, która z metod okaże się najbardziej odpowiednia. 
+
+[Schemat blokowy] [...] 
+Wspólnie ustatliliśmy, że w celu odczytania szukanych częstotliwości, posłużymy się Transformacją Fouriera. Wstępny schemat blokowy, ułwtwiający nam zrozumienie tego procesu jest przedstawiony na rysunku: 
+
+[Wnioski
+]W tym Etapie mogliśmy podsumować wszystkie zebrane aktualnie metody przetwarzania sygnału, w celu wybrania jednej słusznej drogi, pozwalającej odczytać szukane w pliku audio częstotliwości. 
+Ostatecznym i najbardziej efektywnym sposobem na rozwiązanie zadania projektowego okazało się użycie transformacji Fouriera, która jest łatwo dostępnym modułem w MatLabie oraz Pythonie. W ten sposób mogliśmy zrozumieć, napisać i przetestować program, który umożliwił wyświetlenie wykresu z wyraźnie widocznymi szukanymi częstotliwościami. 
