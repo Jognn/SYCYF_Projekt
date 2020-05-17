@@ -1,0 +1,21 @@
+	component cpu is
+		port (
+			clk_clk                             : in  std_logic                     := 'X';             -- clk
+			fft_ii_ledr_sink_valid              : in  std_logic                     := 'X';             -- valid
+			fft_ii_ledr_sink_ready              : out std_logic;                                        -- ready
+			fft_ii_ledr_sink_error              : in  std_logic_vector(1 downto 0)  := (others => 'X'); -- error
+			fft_ii_ledr_sink_startofpacket      : in  std_logic                     := 'X';             -- startofpacket
+			fft_ii_ledr_sink_endofpacket        : in  std_logic                     := 'X';             -- endofpacket
+			fft_ii_ledr_sink_data               : in  std_logic_vector(45 downto 0) := (others => 'X'); -- data
+			fft_ii_sw_source_valid              : out std_logic;                                        -- valid
+			fft_ii_sw_source_ready              : in  std_logic                     := 'X';             -- ready
+			fft_ii_sw_source_error              : out std_logic_vector(1 downto 0);                     -- error
+			fft_ii_sw_source_startofpacket      : out std_logic;                                        -- startofpacket
+			fft_ii_sw_source_endofpacket        : out std_logic;                                        -- endofpacket
+			fft_ii_sw_source_data               : out std_logic_vector(70 downto 0);                    -- data
+			pio_ledr_external_connection_export : out std_logic_vector(28 downto 0);                    -- export
+			pio_sw_external_connection_export   : in  std_logic_vector(15 downto 0) := (others => 'X'); -- export
+			reset_reset_n                       : in  std_logic                     := 'X'              -- reset_n
+		);
+	end component cpu;
+
