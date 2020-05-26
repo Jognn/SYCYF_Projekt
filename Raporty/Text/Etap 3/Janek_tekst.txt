@@ -1,0 +1,46 @@
+\subsection{Analiza algorytmu opisującego dft() (Python)}
+	Jako iż nasz projekt tworzony w Verilogu nie będzie importował żadnego gotowego kodu. Musimy wiedzieć dokładnie w jaki sposób działa funkcja dft() w Matlabie. Udało nam się to zasymulować za pomocą kodu wykonanego w Pythonie, który jako argument "signal" przyjmuje listę wartości z podanego dla nas pliku "signalSample.txt".
+	
+\begin{lstlisting}[label=lst:wydruk,caption={Nasz dotychczasowy kod},language=Python,numbers=left]
+	
+#STALE
+j = complex(0, 1) # jednostka urojona
+PO_PRZECINKU = 3 # liczba miejsc po przecinku do zaokraglenia
+global N # ilosc probek
+czestotliwosc_probkowania = 44100
+
+def dft(signal, wyliczone): # Discrete Fourier Transform
+    wspolczynniki_xk = oblicz_wspolczynniki(signal)
+    moduly_wspolczynnikow = [round(math.sqrt(x.real**2 + x.imag**2), PO_PRZECINKU) for x in wspolczynniki_xk]
+    amplitudy = nyquist_check(moduly_wspolczynnikow)
+
+def oblicz_wspolczynniki(signal):
+    wspolczynniki = list()
+    for k in range(N):
+        suma = 0
+        for n in range(N):
+            suma += signal[n] * exp(k, n)
+            zaokraglona = complex(round(suma.real, PO_PRZECINKU), round(suma.imag, PO_PRZECINKU))
+        wspolczynniki.append(zaokraglona)
+    return wspolczynniki
+
+def exp(k, n):
+    return math.e**((-j*2*math.pi*k*n)/N) # N - ilosc probek!!
+
+def nyquist_check(moduly): # Twierdzenie o probkowaniu
+    wartosci = moduly.copy() # Tworze sobie tutaj kopie, zeby nie zmieniac oryginalnych wartosci modulow wspolczynnikow
+    """
+        Dziele swoje wartosci na 2 podzbiory od polowy
+    """
+    nyquist_limit = math.ceil(N/2)
+    pierwsza_czesc = wartosci[0:nyquist_limit]
+    druga_czesc = wartosci[nyquist_limit:]
+    for i in range(len(druga_czesc)):
+        if druga_czesc[i] != 0 and druga_czesc[i] in pierwsza_czesc:
+            l = pierwsza_czesc.index(druga_czesc[i])
+            wartosci[l] = pierwsza_czesc[l] + druga_czesc[i]
+            wartosci[i+nyquist_limit] = 0
+    return moduly
+	\end{lstlisting}
+	
+	Po uruchomieniu, okazało się, że czas kompilacji naszej funkcji jest stosunkowo wolny, o złożoności $O(N^{2})$. Istnieje możliwość przyspieszenia procesu używając szybszej wariacji zwanej "Fast Fourier Transform", której złożoność wynosi $O(Nlog(N)$. Różnica polega na sprytnym zmniejszeniu ilości próbek do sumowania współczynników. Istnieje wiele różnych rodzajów implementacji tego algorytmu dlatego naszym aktualnym zadaniem jest teraz znalezienia najbardziej odpowiedniej do zastosowania w języku Verilog.
